@@ -6,70 +6,60 @@ import { profile } from "@/lib/content";
 
 export function Hero() {
   return (
-    <section id="top" className="relative">
+    <section id="top" className="relative pt-12 md:pt-24">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(225,29,116,0.18),transparent_60%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(255,79,163,0.28),transparent_60%)]" />
       <ContainerScroll
         titleComponent={
-          <div className="space-y-6 pb-4">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center justify-center"
-            >
-              <Image
-                src="/sprite.png"
-                alt="Anson pixel avatar"
-                width={180}
-                height={180}
-                priority
-                unoptimized
-                className="image-pixel animate-float mx-auto drop-shadow-[0_0_24px_rgba(255,79,163,0.55)]"
-                draggable={false}
-              />
-            </motion.div>
-            <h1 className="font-display text-5xl font-semibold text-slate-900 dark:text-white md:text-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center gap-6 pb-4"
+          >
+            <Image
+              src="/sprite.png"
+              alt="Anson pixel avatar"
+              width={160}
+              height={160}
+              priority
+              unoptimized
+              className="image-pixel animate-float drop-shadow-[0_0_24px_rgba(255,79,163,0.55)]"
+              draggable={false}
+            />
+            <h1 className="font-display text-5xl font-normal leading-none text-slate-900 dark:text-white md:text-7xl">
               {profile.name}
-              <br />
-              <span className="mt-1 inline-block bg-gradient-to-r from-fuchsia-500 via-rose-400 to-orange-300 bg-clip-text text-5xl font-bold leading-none text-transparent md:text-[6rem]">
-                builds things.
-              </span>
             </h1>
-            <p className="mx-auto max-w-2xl text-sm text-slate-700 dark:text-slate-300 md:text-base">
-              {profile.headline}
-            </p>
-          </div>
+          </motion.div>
         }
       >
-        <HeroSky />
+        <AboutInCard />
       </ContainerScroll>
     </section>
   );
 }
 
-function HeroSky() {
+function AboutInCard() {
   return (
-    <div className="relative flex h-full w-full items-end justify-center overflow-hidden rounded-2xl bg-sunset">
+    <div id="about" className="relative flex h-full w-full overflow-hidden rounded-2xl bg-sunset">
       <Clouds />
-      <div className="absolute inset-x-0 top-10 flex justify-center">
-        <Image
-          src="/sprite.png"
-          alt=""
-          width={140}
-          height={140}
-          unoptimized
-          aria-hidden
-          className="image-pixel animate-float drop-shadow-[0_0_30px_rgba(255,150,120,0.6)]"
-          draggable={false}
-        />
-      </div>
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
-      <div className="relative z-10 mb-8 px-6 text-center">
-        <p className="font-display text-xl italic text-white/95 md:text-3xl">
-          &ldquo;Shoot for the stars, so if you fall you land on the clouds.&rdquo;
+      <div className="relative z-10 flex w-full flex-col justify-between p-8 md:p-14">
+        <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/80">
+          01 · about
         </p>
-        <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/75">
-          — homecoming · kanye west
+        <div className="max-w-2xl space-y-5">
+          <h2 className="font-display text-3xl font-normal leading-tight text-white md:text-5xl">
+            Biomed student,
+            <br />
+            <em className="not-italic bg-gradient-to-r from-amber-200 via-rose-200 to-white bg-clip-text text-transparent">
+              accidental engineer.
+            </em>
+          </h2>
+          <p className="text-sm leading-relaxed text-white/90 md:text-base">
+            {profile.bio}
+          </p>
+        </div>
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
+          {profile.headline}
         </p>
       </div>
     </div>

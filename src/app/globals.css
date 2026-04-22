@@ -45,7 +45,7 @@ body {
 
 .font-display {
   font-family: var(--font-display), ui-serif, Georgia, serif;
-  font-variation-settings: "SOFT" 100, "opsz" 144;
+  letter-spacing: -0.01em;
 }
 
 .bg-sunset {
@@ -73,4 +73,17 @@ body {
 
 .animate-float {
   animation: float-slow 6s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 50s linear infinite reverse;
 }
