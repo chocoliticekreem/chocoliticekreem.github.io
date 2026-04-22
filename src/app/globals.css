@@ -3,20 +3,27 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --background: #fff5ec;
+  --foreground: #1a0a2e;
+  --accent: #e11d74;
+  --accent-2: #ff7a59;
 }
 
 .dark {
-  --background: #050812;
-  --foreground: #f8fafc;
+  --background: #0b0420;
+  --foreground: #f8ecff;
+  --accent: #ff4fa3;
+  --accent-2: #ffb36b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
 }
 
 html {
@@ -36,6 +43,19 @@ body {
   image-rendering: crisp-edges;
 }
 
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
+.bg-sunset {
+  background: linear-gradient(180deg, #2a0b45 0%, #5c1466 22%, #b02a7f 48%, #e46273 70%, #ffb08a 88%, #ffd7a8 100%);
+}
+
+.bg-sunset-light {
+  background: linear-gradient(180deg, #ffd7a8 0%, #ffb08a 25%, #e46273 55%, #b02a7f 85%, #5c1466 100%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -44,4 +64,26 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 50s linear infinite reverse;
 }

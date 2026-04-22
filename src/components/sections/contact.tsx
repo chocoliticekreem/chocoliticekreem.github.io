@@ -27,10 +27,10 @@ export function Contact() {
 
   return (
     <section id="contact" className="mx-auto max-w-4xl px-6 py-24 md:py-32">
-      <p className="mb-6 font-mono text-xs uppercase tracking-widest text-emerald-500">
+      <p className="mb-6 font-mono text-xs uppercase tracking-widest text-rose-500 dark:text-rose-400">
         05 · contact
       </p>
-      <h2 className="mb-8 text-3xl font-bold text-slate-900 dark:text-white md:text-5xl">
+      <h2 className="font-display mb-8 text-4xl font-semibold text-slate-900 dark:text-white md:text-6xl">
         Want to build something?
       </h2>
       <p className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -43,9 +43,9 @@ export function Contact() {
               href={href}
               target={href.startsWith("mailto:") ? undefined : "_blank"}
               rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-              className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 transition-colors duration-200 hover:border-emerald-400 hover:bg-emerald-50/40 dark:border-white/10 dark:bg-white/5 dark:hover:border-emerald-400/60 dark:hover:bg-emerald-400/5 cursor-pointer"
+              className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 transition-colors duration-200 hover:border-rose-400 hover:bg-rose-50/50 dark:border-white/10 dark:bg-white/5 dark:hover:border-rose-400/60 dark:hover:bg-rose-400/5 cursor-pointer"
             >
-              <Icon className="h-5 w-5 text-slate-500 transition-colors duration-200 group-hover:text-emerald-500 dark:text-slate-400" />
+              <Icon className="h-5 w-5 text-slate-500 transition-colors duration-200 group-hover:text-rose-500 dark:text-rose-400 dark:text-slate-400" />
               <div className="min-w-0">
                 <p className="font-mono text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">
                   {label}

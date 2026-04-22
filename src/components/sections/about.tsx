@@ -3,10 +3,10 @@ import { profile } from "@/lib/content";
 export function About() {
   return (
     <section id="about" className="mx-auto max-w-4xl px-6 py-20 md:py-28">
-      <p className="mb-6 font-mono text-xs uppercase tracking-widest text-emerald-500">
+      <p className="mb-6 font-mono text-xs uppercase tracking-widest text-rose-500 dark:text-rose-400">
         01 · about
       </p>
-      <h2 className="mb-8 text-3xl font-bold text-slate-900 dark:text-white md:text-5xl">
+      <h2 className="font-display mb-8 text-4xl font-semibold text-slate-900 dark:text-white md:text-6xl">
         Biomed student,<br />
         accidental engineer.
       </h2>

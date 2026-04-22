@@ -22,7 +22,7 @@ export function Nav() {
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="font-mono text-xs text-slate-600 transition-colors duration-200 hover:text-emerald-600 dark:text-slate-400 dark:hover:text-emerald-400"
+                className="font-mono text-xs text-slate-600 transition-colors duration-200 hover:text-rose-600 dark:text-slate-400 dark:hover:text-rose-300"
               >
                 {l.label}
               </Link>
