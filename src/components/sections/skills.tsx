@@ -3,10 +3,10 @@ import { skills } from "@/lib/content";
 export function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-4xl px-6 py-20 md:py-28">
-      <p className="mb-6 font-mono text-xs uppercase tracking-widest text-emerald-500">
+      <p className="mb-6 font-mono text-xs uppercase tracking-widest text-rose-500 dark:text-rose-400">
         04 · stack
       </p>
-      <h2 className="mb-12 text-3xl font-bold text-slate-900 dark:text-white md:text-5xl">
+      <h2 className="font-display mb-12 text-4xl font-semibold text-slate-900 dark:text-white md:text-6xl">
         What I work with.
       </h2>
 

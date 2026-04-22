@@ -7,14 +7,14 @@ import { profile } from "@/lib/content";
 export function Hero() {
   return (
     <section id="top" className="relative">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(34,197,94,0.15),transparent_55%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(34,197,94,0.22),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(225,29,116,0.18),transparent_60%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(255,79,163,0.28),transparent_60%)]" />
       <ContainerScroll
         titleComponent={
           <div className="space-y-6 pb-4">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.6 }}
               className="flex items-center justify-center"
             >
               <Image
@@ -24,49 +24,66 @@ export function Hero() {
                 height={180}
                 priority
                 unoptimized
-                className="image-pixel mx-auto drop-shadow-[0_0_18px_rgba(34,197,94,0.45)]"
+                className="image-pixel animate-float mx-auto drop-shadow-[0_0_24px_rgba(255,79,163,0.55)]"
                 draggable={false}
               />
             </motion.div>
-            <h1 className="text-4xl font-semibold text-slate-900 dark:text-white">
+            <h1 className="font-display text-5xl font-semibold text-slate-900 dark:text-white md:text-6xl">
               {profile.name}
               <br />
-              <span className="mt-1 inline-block bg-gradient-to-r from-emerald-400 via-emerald-300 to-lime-300 bg-clip-text text-4xl font-bold leading-none text-transparent md:text-[6rem]">
+              <span className="mt-1 inline-block bg-gradient-to-r from-fuchsia-500 via-rose-400 to-orange-300 bg-clip-text text-5xl font-bold leading-none text-transparent md:text-[6rem]">
                 builds things.
               </span>
             </h1>
-            <p className="mx-auto max-w-2xl text-sm text-slate-600 dark:text-slate-400 md:text-base">
+            <p className="mx-auto max-w-2xl text-sm text-slate-700 dark:text-slate-300 md:text-base">
               {profile.headline}
             </p>
           </div>
         }
       >
-        <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-2xl bg-[#0b0f19] text-emerald-300">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(34,197,94,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.08)_1px,transparent_1px)] bg-[size:32px_32px]" />
-          <div className="relative z-10 max-w-2xl p-8 font-mono text-sm md:text-base">
-            <div className="mb-4 flex gap-2">
-              <span className="h-3 w-3 rounded-full bg-rose-400" />
-              <span className="h-3 w-3 rounded-full bg-amber-300" />
-              <span className="h-3 w-3 rounded-full bg-emerald-400" />
-            </div>
-            <pre className="whitespace-pre-wrap leading-relaxed">
-{`$ whoami
-> anson_woo
-
-$ cat focus.txt
-> biomed @ imperial
-> AI automations
-> ML for neuroscience (y3 @ neurox)
-
-$ ls ./building
-> edu/  codewords/  speed_networknow/
-
-$ echo $STATUS
-> shipping.`}
-            </pre>
-          </div>
-        </div>
+        <HeroSky />
       </ContainerScroll>
     </section>
+  );
+}
+
+function HeroSky() {
+  return (
+    <div className="relative flex h-full w-full items-end justify-center overflow-hidden rounded-2xl bg-sunset">
+      <Clouds />
+      <div className="absolute inset-x-0 top-10 flex justify-center">
+        <Image
+          src="/sprite.png"
+          alt=""
+          width={140}
+          height={140}
+          unoptimized
+          aria-hidden
+          className="image-pixel animate-float drop-shadow-[0_0_30px_rgba(255,150,120,0.6)]"
+          draggable={false}
+        />
+      </div>
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+      <div className="relative z-10 mb-8 px-6 text-center">
+        <p className="font-display text-xl italic text-white/95 md:text-3xl">
+          &ldquo;Shoot for the stars, so if you fall you land on the clouds.&rdquo;
+        </p>
+        <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/75">
+          — homecoming · kanye west
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function Clouds() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0">
+      <div className="absolute left-[8%] top-[30%] h-24 w-48 rounded-full bg-white/25 blur-2xl" />
+      <div className="absolute right-[6%] top-[45%] h-28 w-60 rounded-full bg-white/20 blur-2xl" />
+      <div className="absolute left-[35%] top-[55%] h-20 w-40 rounded-full bg-rose-200/30 blur-2xl" />
+      <div className="absolute right-[28%] top-[18%] h-14 w-28 rounded-full bg-orange-200/40 blur-xl" />
+      <div className="absolute bottom-[20%] left-[20%] h-16 w-40 rounded-full bg-white/30 blur-2xl" />
+    </div>
   );
 }
