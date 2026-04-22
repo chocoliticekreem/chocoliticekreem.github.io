@@ -11,18 +11,21 @@ export function Quote() {
     offset: ["start start", "end end"],
   });
 
-  // Sprite launch: floats → flies up and out as user scrolls
-  const spriteY = useTransform(scrollYProgress, [0, 0.55, 0.9], ["0%", "-160%", "-260%"]);
-  const spriteScale = useTransform(scrollYProgress, [0, 0.4, 0.9], [1, 1.05, 0.7]);
-  const spriteOpacity = useTransform(scrollYProgress, [0, 0.65, 0.85], [1, 1, 0]);
-  const spriteRotate = useTransform(scrollYProgress, [0, 1], [0, -8]);
+  // Sprite launch: starts low in the scene, then arcs up-left and slightly toward the viewer.
+  const spriteX = useTransform(scrollYProgress, [0, 0.2, 0.58, 0.9], ["16vw", "14vw", "0vw", "-12vw"]);
+  const spriteY = useTransform(scrollYProgress, [0, 0.18, 0.58, 0.9], ["28vh", "22vh", "-10vh", "-52vh"]);
+  const spriteScale = useTransform(scrollYProgress, [0, 0.2, 0.58, 0.9], [0.72, 0.82, 1.16, 1.52]);
+  const spriteOpacity = useTransform(scrollYProgress, [0, 0.64, 0.82, 0.92], [0.92, 1, 0.5, 0]);
+  const spriteRotate = useTransform(scrollYProgress, [0, 0.58, 0.9], [10, 3, -12]);
 
-  // Background fades as sprite exits
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.6, 0.9], [1, 0.9, 0]);
+  // Background stays present for the launch, then clears out for the quote reveal.
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.62, 0.9], [1, 1, 0.12]);
+  const bgScale = useTransform(scrollYProgress, [0, 0.9], [1.06, 1]);
+  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.52, 0.86], [0, 1]);
 
   // Quote fades in toward the end
-  const quoteOpacity = useTransform(scrollYProgress, [0.6, 0.9], [0, 1]);
-  const quoteY = useTransform(scrollYProgress, [0.6, 0.9], [40, 0]);
+  const quoteOpacity = useTransform(scrollYProgress, [0.68, 0.92], [0, 1]);
+  const quoteY = useTransform(scrollYProgress, [0.68, 0.92], [56, 0]);
 
   // Scroll hint fades as user starts scrolling
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
@@ -40,7 +43,7 @@ export function Quote() {
       <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden bg-[#1a0a2e]">
         {/* Graduation-style background */}
         <motion.div
-          style={{ opacity: bgOpacity }}
+          style={{ opacity: bgOpacity, scale: bgScale }}
           className="absolute inset-0"
         >
           <Image
@@ -49,29 +52,37 @@ export function Quote() {
             fill
             priority
             unoptimized
-            className="image-pixel object-cover object-center"
+            sizes="100vw"
+            className="image-pixel object-cover object-[56%_82%] md:object-[52%_74%]"
             aria-hidden
           />
         </motion.div>
 
+        <motion.div
+          style={{ opacity: quoteBackdropOpacity }}
+          className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,_rgba(255,240,221,0.2)_0%,_rgba(77,14,85,0.82)_38%,_rgba(18,5,35,0.96)_100%)]"
+        />
+
         {/* Sprite flying out */}
         <motion.div
           style={{
+            x: spriteX,
             y: spriteY,
             scale: spriteScale,
             opacity: spriteOpacity,
             rotate: spriteRotate,
           }}
-          className="relative z-10 flex items-center justify-center"
+          className="relative z-20 flex items-center justify-center will-change-transform"
         >
           <Image
-            src="/sprite-launch.png"
+            src="/image.png"
             alt="Anson sprite launching"
-            width={260}
-            height={260}
+            width={600}
+            height={600}
             unoptimized
             priority
-            className="image-pixel drop-shadow-[0_0_40px_rgba(255,150,80,0.6)]"
+            sizes="(max-width: 768px) 42vw, 28vw"
+            className="image-pixel h-auto w-[180px] drop-shadow-[0_0_40px_rgba(255,150,80,0.45)] md:w-[240px]"
             draggable={false}
           />
         </motion.div>
@@ -79,7 +90,7 @@ export function Quote() {
         {/* Quote — fades in as sprite exits */}
         <motion.div
           style={{ opacity: quoteOpacity, y: quoteY }}
-          className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center"
+          className="absolute inset-0 z-30 flex flex-col items-center justify-center px-6 text-center"
         >
           <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/70">
             ★ homecoming · kanye west
@@ -116,12 +127,13 @@ function StaticQuote() {
     <section aria-label="Favourite quote" className="relative overflow-hidden bg-sunset">
       <div className="mx-auto flex max-w-5xl flex-col items-center px-6 py-32 text-center md:py-44">
         <Image
-          src="/sprite-launch.png"
+          src="/image.png"
           alt="Anson sprite launching"
-          width={180}
-          height={180}
+          width={600}
+          height={600}
           unoptimized
-          className="image-pixel mb-8 drop-shadow-[0_0_30px_rgba(255,150,80,0.6)]"
+          sizes="180px"
+          className="image-pixel mb-8 h-auto w-[180px] drop-shadow-[0_0_30px_rgba(255,150,80,0.45)]"
         />
         <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/70">
           ★ homecoming · kanye west
