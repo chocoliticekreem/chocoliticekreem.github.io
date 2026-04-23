@@ -7,6 +7,7 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform 
 export function Quote() {
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
+  const touchStartYRef = useRef<number | null>(null);
   const [hasContinued, setHasContinued] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const { scrollYProgress } = useScroll({
@@ -49,24 +50,58 @@ export function Quote() {
       return;
     }
 
-    const preventScroll = (event: Event) => {
-      event.preventDefault();
+    const isQuoteActive = () => {
+      const rect = ref.current?.getBoundingClientRect();
+      if (!rect) {
+        return false;
+      }
+
+      return rect.top <= 0 && rect.bottom > window.innerHeight;
+    };
+
+    const preventWheelDown = (event: WheelEvent) => {
+      if (isQuoteActive() && event.deltaY > 0) {
+        event.preventDefault();
+      }
+    };
+
+    const recordTouchStart = (event: TouchEvent) => {
+      touchStartYRef.current = event.touches[0]?.clientY ?? null;
+    };
+
+    const preventTouchDown = (event: TouchEvent) => {
+      const currentY = event.touches[0]?.clientY;
+      const startY = touchStartYRef.current;
+      if (currentY == null || startY == null) {
+        return;
+      }
+
+      const delta = startY - currentY;
+      if (isQuoteActive() && delta > 0) {
+        event.preventDefault();
+      }
     };
 
     const preventKeyScroll = (event: KeyboardEvent) => {
+      if (!isQuoteActive()) {
+        return;
+      }
+
       const lockedKeys = ["ArrowDown", "PageDown", "Space", "End"];
       if (lockedKeys.includes(event.code) || lockedKeys.includes(event.key)) {
         event.preventDefault();
       }
     };
 
-    window.addEventListener("wheel", preventScroll, { passive: false });
-    window.addEventListener("touchmove", preventScroll, { passive: false });
+    window.addEventListener("wheel", preventWheelDown, { passive: false });
+    window.addEventListener("touchstart", recordTouchStart, { passive: true });
+    window.addEventListener("touchmove", preventTouchDown, { passive: false });
     window.addEventListener("keydown", preventKeyScroll);
 
     return () => {
-      window.removeEventListener("wheel", preventScroll);
-      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("wheel", preventWheelDown);
+      window.removeEventListener("touchstart", recordTouchStart);
+      window.removeEventListener("touchmove", preventTouchDown);
       window.removeEventListener("keydown", preventKeyScroll);
     };
   }, [hasContinued, isPaused, reduced]);
