@@ -22,12 +22,12 @@ export function Quote() {
   // Background stays present for the launch, then clears out for the quote reveal.
   const bgOpacity = useTransform(scrollYProgress, [0, 0.44, 0.68], [1, 0.72, 0]);
   const bgScale = useTransform(scrollYProgress, [0, 0.68], [1.07, 0.98]);
-  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.34, 0.62], [0, 1]);
+  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.34, 0.62], [0, 0.82]);
 
   // Quote fades in well before the section ends so it has time to fully land.
-  const quoteOpacity = useTransform(scrollYProgress, [0.42, 0.68], [0, 1]);
-  const quoteY = useTransform(scrollYProgress, [0.42, 0.68], [80, 0]);
-  const quoteScale = useTransform(scrollYProgress, [0.42, 0.68], [0.96, 1]);
+  const quoteOpacity = useTransform(scrollYProgress, [0.4, 0.62], [0, 1]);
+  const quoteY = useTransform(scrollYProgress, [0.4, 0.62], [80, 0]);
+  const quoteScale = useTransform(scrollYProgress, [0.4, 0.62], [0.96, 1]);
 
   // Scroll hint fades as user starts scrolling
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
@@ -40,7 +40,7 @@ export function Quote() {
     <section
       ref={ref}
       aria-label="Favourite quote"
-      className="relative h-[300vh]"
+      className="relative h-[360vh]"
     >
       <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden bg-[#1a0a2e]">
         {/* Graduation-style background */}
@@ -62,7 +62,7 @@ export function Quote() {
 
         <motion.div
           style={{ opacity: quoteBackdropOpacity }}
-          className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,_rgba(255,240,221,0.2)_0%,_rgba(77,14,85,0.82)_38%,_rgba(18,5,35,0.96)_100%)]"
+          className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,_rgba(255,240,221,0.14)_0%,_rgba(77,14,85,0.58)_38%,_rgba(18,5,35,0.8)_100%)]"
         />
 
         {/* Sprite flying out */}
