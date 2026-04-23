@@ -6,8 +6,8 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform 
 
 export function Quote() {
   const QUOTE_REVEAL_END = 0.62;
-  const QUOTE_HOLD_START = 0.8;
-  const QUOTE_RESET_POINT = 0.62;
+  const QUOTE_HOLD_START = 0.64;
+  const QUOTE_RESET_POINT = 0.5;
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const prevProgressRef = useRef(0);
@@ -91,15 +91,10 @@ export function Quote() {
 
     const htmlOverflow = document.documentElement.style.overflow;
     const bodyOverflow = document.body.style.overflow;
-    const raf = requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document.documentElement.style.overflow = "hidden";
-        document.body.style.overflow = "hidden";
-      });
-    });
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
 
     return () => {
-      cancelAnimationFrame(raf);
       document.documentElement.style.overflow = htmlOverflow;
       document.body.style.overflow = bodyOverflow;
     };
