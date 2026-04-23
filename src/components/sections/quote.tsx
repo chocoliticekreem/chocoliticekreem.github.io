@@ -6,8 +6,8 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform 
 
 export function Quote() {
   const QUOTE_REVEAL_END = 0.62;
-  const QUOTE_HOLD_START = 0.72;
-  const QUOTE_RESET_POINT = 0.56;
+  const QUOTE_HOLD_START = 0.8;
+  const QUOTE_RESET_POINT = 0.62;
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const prevProgressRef = useRef(0);
@@ -87,24 +87,14 @@ export function Quote() {
       return;
     }
 
-    let frameId = 0;
-
-    const clampAtQuote = () => {
-      const targetScrollTop = pauseTopRef.current ?? getQuoteHoldTop();
-      if (targetScrollTop != null) {
-        pauseTopRef.current = targetScrollTop;
-        if (window.scrollY > targetScrollTop) {
-          window.scrollTo({ top: targetScrollTop, behavior: "auto" });
-        }
-      }
-
-      frameId = window.requestAnimationFrame(clampAtQuote);
-    };
-
-    frameId = window.requestAnimationFrame(clampAtQuote);
+    const htmlOverflow = document.documentElement.style.overflow;
+    const bodyOverflow = document.body.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
 
     return () => {
-      window.cancelAnimationFrame(frameId);
+      document.documentElement.style.overflow = htmlOverflow;
+      document.body.style.overflow = bodyOverflow;
     };
   }, [hasContinued, isPaused, reduced]);
 
