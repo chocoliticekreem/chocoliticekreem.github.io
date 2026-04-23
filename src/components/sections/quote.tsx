@@ -6,7 +6,7 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform 
 
 export function Quote() {
   const QUOTE_REVEAL_END = 0.62;
-  const QUOTE_HOLD_START = 0.64;
+  const QUOTE_HOLD_START = 0.78;
   const QUOTE_RESET_POINT = 0.5;
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
@@ -89,14 +89,36 @@ export function Quote() {
       return;
     }
 
-    const htmlOverflow = document.documentElement.style.overflow;
-    const bodyOverflow = document.body.style.overflow;
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
+    const holdTop = pauseTopRef.current;
+    if (holdTop == null) {
+      return;
+    }
+
+    const preventScroll = (e: Event) => {
+      e.preventDefault();
+    };
+    const preventKeys = (e: KeyboardEvent) => {
+      const blocked = [" ", "ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End"];
+      if (blocked.includes(e.key)) {
+        e.preventDefault();
+      }
+    };
+    const onScroll = () => {
+      if (Math.abs(window.scrollY - holdTop) > 0.5) {
+        window.scrollTo({ top: holdTop, behavior: "auto" });
+      }
+    };
+
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+    window.addEventListener("keydown", preventKeys);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      document.documentElement.style.overflow = htmlOverflow;
-      document.body.style.overflow = bodyOverflow;
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("keydown", preventKeys);
+      window.removeEventListener("scroll", onScroll);
     };
   }, [hasContinued, isPaused, reduced]);
 
