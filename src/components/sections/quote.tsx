@@ -8,6 +8,7 @@ export function Quote() {
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const prevProgressRef = useRef(0);
+  const pauseTopRef = useRef<number | null>(null);
   const [hasContinued, setHasContinued] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const { scrollYProgress } = useScroll({
@@ -32,20 +33,28 @@ export function Quote() {
   const quoteOpacity = useTransform(scrollYProgress, [0.4, 0.62], [0, 1]);
   const quoteY = useTransform(scrollYProgress, [0.4, 0.62], [80, 0]);
   const quoteScale = useTransform(scrollYProgress, [0.4, 0.62], [0.96, 1]);
-  const continuePromptOpacity = useTransform(scrollYProgress, [0.54, 0.66], [0, 1]);
 
   // Scroll hint fades as user starts scrolling
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
-  const snapToQuoteHold = () => {
+  const getQuoteHoldTop = () => {
     const section = ref.current;
     if (!section) {
-      return;
+      return null;
     }
 
     const viewportHeight = window.innerHeight;
     const scrollableDistance = section.offsetHeight - viewportHeight;
-    const targetScrollTop = section.offsetTop + scrollableDistance * 0.62;
+    return section.offsetTop + scrollableDistance * 0.62;
+  };
+
+  const snapToQuoteHold = () => {
+    const targetScrollTop = getQuoteHoldTop();
+    if (targetScrollTop == null) {
+      return;
+    }
+
+    pauseTopRef.current = targetScrollTop;
     window.scrollTo({ top: targetScrollTop, behavior: "auto" });
   };
 
@@ -60,6 +69,7 @@ export function Quote() {
     if (latest < 0.52) {
       setHasContinued(false);
       setIsPaused(false);
+      pauseTopRef.current = null;
       return;
     }
 
@@ -74,17 +84,24 @@ export function Quote() {
       return;
     }
 
-    const preventKeyScroll = (event: KeyboardEvent) => {
-      const lockedKeys = ["ArrowDown", "PageDown", "Space", "End"];
-      if (lockedKeys.includes(event.code) || lockedKeys.includes(event.key)) {
-        event.preventDefault();
+    let frameId = 0;
+
+    const clampAtQuote = () => {
+      const targetScrollTop = pauseTopRef.current ?? getQuoteHoldTop();
+      if (targetScrollTop != null) {
+        pauseTopRef.current = targetScrollTop;
+        if (window.scrollY > targetScrollTop) {
+          window.scrollTo({ top: targetScrollTop, behavior: "auto" });
+        }
       }
+
+      frameId = window.requestAnimationFrame(clampAtQuote);
     };
 
-    window.addEventListener("keydown", preventKeyScroll);
+    frameId = window.requestAnimationFrame(clampAtQuote);
 
     return () => {
-      window.removeEventListener("keydown", preventKeyScroll);
+      window.cancelAnimationFrame(frameId);
     };
   }, [hasContinued, isPaused, reduced]);
 
@@ -176,42 +193,27 @@ export function Quote() {
           </p>
         </motion.div>
 
-        {/* Scroll hint */}
-        <motion.div
-          style={{ opacity: hintOpacity }}
-          className="absolute bottom-8 left-1/2 z-30 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/70"
-        >
-          scroll to launch ↓
-        </motion.div>
+        {!isPaused && (
+          <motion.div
+            style={{ opacity: hintOpacity }}
+            className="absolute bottom-8 left-1/2 z-30 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/70"
+          >
+            scroll to launch ↓
+          </motion.div>
+        )}
 
-        {!hasContinued && (
+        {isPaused && !hasContinued && (
           <motion.button
             type="button"
             onClick={continueDown}
-            style={{ opacity: continuePromptOpacity }}
             initial={false}
-            animate={isPaused ? { y: [0, 4, 0] } : { y: 12 }}
-            transition={{ duration: 1.2, ease: "easeOut", repeat: isPaused ? Infinity : 0 }}
-            className={`absolute bottom-8 left-1/2 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/85 backdrop-blur-sm transition-colors hover:bg-white/15 ${isPaused ? "pointer-events-auto" : "pointer-events-none"}`}
+            animate={{ opacity: 1, y: [0, 4, 0] }}
+            transition={{ duration: 1.2, ease: "easeOut", repeat: Infinity }}
+            className="absolute bottom-8 left-1/2 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-white/12 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/90 backdrop-blur-sm transition-colors hover:bg-white/18"
           >
             continue
             <ChevronDown className="h-4 w-4" />
           </motion.button>
-        )}
-
-        {isPaused && !hasContinued && (
-          <div
-            aria-hidden
-            className="fixed inset-0 z-[35]"
-            onWheel={(event) => {
-              if (event.deltaY > 0) {
-                event.preventDefault();
-              }
-            }}
-            onTouchMove={(event) => {
-              event.preventDefault();
-            }}
-          />
         )}
       </div>
     </section>
