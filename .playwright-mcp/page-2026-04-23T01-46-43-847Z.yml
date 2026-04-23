@@ -1,0 +1,305 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "anson." [ref=e4] [cursor=pointer]:
+        - /url: "#top"
+      - list [ref=e5]:
+        - listitem [ref=e6]:
+          - link "About" [ref=e7] [cursor=pointer]:
+            - /url: "#about"
+        - listitem [ref=e8]:
+          - link "Experience" [ref=e9] [cursor=pointer]:
+            - /url: "#experience"
+        - listitem [ref=e10]:
+          - link "Projects" [ref=e11] [cursor=pointer]:
+            - /url: "#projects"
+        - listitem [ref=e12]:
+          - link "Stack" [ref=e13] [cursor=pointer]:
+            - /url: "#skills"
+        - listitem [ref=e14]:
+          - link "Contact" [ref=e15] [cursor=pointer]:
+            - /url: "#contact"
+  - main [ref=e17]:
+    - generic [ref=e20]:
+      - generic [ref=e22]:
+        - paragraph [ref=e23]: HK · LDN
+        - heading "Anson Woo" [level=1] [ref=e24]
+        - paragraph [ref=e26]: Building everday.
+      - generic [ref=e30]:
+        - paragraph [ref=e31]: 01 · about
+        - generic [ref=e32]:
+          - heading "Biomed student, active builder." [level=2] [ref=e33]:
+            - text: Biomed student,
+            - emphasis [ref=e35]: active builder.
+          - paragraph [ref=e36]: Year 2 Medical Biosciences student at Imperial, self-teaching AI/ML. Founding Engineer at EdU, building AI automations at Speed NetworkNow and CodeWords. Year 3 placement lined up at NeuroX working on ML for neuroscience.
+        - paragraph [ref=e37]: Medical Biosciences @ Imperial · Founding Engineer @ EdU
+    - region "Favourite quote" [ref=e38]:
+      - generic [ref=e39]:
+        - img [ref=e41]
+        - img "Anson sprite launching" [ref=e45]
+        - generic [ref=e46]:
+          - paragraph [ref=e47]: ★ homecoming · kanye west
+          - heading "Reach for the stars, so if you fall you land on a cloud." [level=2] [ref=e48]:
+            - text: Reach for the stars,
+            - emphasis [ref=e49]: so if you fall
+            - text: you land on a cloud.
+          - paragraph [ref=e51]: The closest thing to a personal mission statement. It's why I keep shipping.
+        - generic [ref=e52]: scroll to launch ↓
+    - generic [ref=e53]:
+      - paragraph [ref=e54]: 02 · experience
+      - heading "What I'm doing." [level=2] [ref=e55]
+      - list [ref=e56]:
+        - listitem [ref=e57]:
+          - generic [ref=e59]:
+            - heading "Secretary · Imperial Entrepreneurs" [level=3] [ref=e60]:
+              - text: Secretary
+              - generic [ref=e61]: · Imperial Entrepreneurs
+            - generic [ref=e62]: Apr 2026 — Present
+          - paragraph [ref=e63]: London, UKcurrent
+        - listitem [ref=e64]:
+          - generic [ref=e66]:
+            - heading "Spring 2026 Cohort · GDG Academy" [level=3] [ref=e67]:
+              - text: Spring 2026 Cohort
+              - generic [ref=e68]: · GDG Academy
+            - generic [ref=e69]: Mar 2026 — Present
+          - paragraph [ref=e70]: London, UKcurrent
+        - listitem [ref=e71]:
+          - generic [ref=e73]:
+            - heading "Builder in Residence · CodeWords" [level=3] [ref=e74]:
+              - text: Builder in Residence
+              - generic [ref=e75]: · CodeWords
+            - generic [ref=e76]: Mar 2026 — Present
+          - paragraph [ref=e77]: London, UKcurrent
+        - listitem [ref=e78]:
+          - generic [ref=e80]:
+            - heading "Founding Engineer · EdU CareerTech" [level=3] [ref=e81]:
+              - text: Founding Engineer
+              - generic [ref=e82]: · EdU CareerTech
+            - generic [ref=e83]: Mar 2026 — Present
+          - paragraph [ref=e84]: London, UKcurrent
+        - listitem [ref=e85]:
+          - generic [ref=e87]:
+            - heading "AI Automation Intern · Speed NetworkNow" [level=3] [ref=e88]:
+              - text: AI Automation Intern
+              - generic [ref=e89]: · Speed NetworkNow
+            - generic [ref=e90]: Jan 2026 — Present
+          - paragraph [ref=e91]: London, UKcurrent
+        - listitem [ref=e92]:
+          - generic [ref=e94]:
+            - heading "Spring Intern · L'Oréal" [level=3] [ref=e95]:
+              - text: Spring Intern
+              - generic [ref=e96]: · L'Oréal
+            - generic [ref=e97]: Apr 2026
+          - paragraph [ref=e98]: London, UK
+        - listitem [ref=e99]:
+          - generic [ref=e101]:
+            - heading "President · Imperial College Chinese Society" [level=3] [ref=e102]:
+              - text: President
+              - generic [ref=e103]: · Imperial College Chinese Society
+            - generic [ref=e104]: May 2025 — Present
+          - paragraph [ref=e105]: London, UKcurrent
+        - listitem [ref=e106]:
+          - generic [ref=e108]:
+            - heading "Medical Biosciences (BSc) · Imperial College London" [level=3] [ref=e109]:
+              - text: Medical Biosciences (BSc)
+              - generic [ref=e110]: · Imperial College London
+            - generic [ref=e111]: Sep 2024 — 2027
+          - paragraph [ref=e112]: London, UKcurrent
+    - generic [ref=e113]:
+      - paragraph [ref=e114]: 03 · projects
+      - heading "Things I've built." [level=2] [ref=e115]
+      - generic [ref=e116]:
+        - 'link "Stream Mind 1st place Gradium · 2nd place Google DeepMind · 3rd overall at {Tech:Europe} London AI Hackathon Live-streaming AI copilot for creators. Built voice-controlled clipping, instant clip retrieval, YouTube upload flows, voice-interactive chat polls, live chat sentiment analysis, and chatbot tooling for stream communities, with more features on the way. Next.js Voice AI Live Streaming YouTube API Sentiment Analysis" [ref=e117] [cursor=pointer]':
+          - /url: https://github.com/Stream-Mind/Stream-Mind
+          - generic [ref=e118]:
+            - generic [ref=e119]:
+              - heading "Stream Mind" [level=3] [ref=e120]
+              - paragraph [ref=e121]: "1st place Gradium · 2nd place Google DeepMind · 3rd overall at {Tech:Europe} London AI Hackathon"
+            - img [ref=e122]
+          - paragraph [ref=e125]: Live-streaming AI copilot for creators. Built voice-controlled clipping, instant clip retrieval, YouTube upload flows, voice-interactive chat polls, live chat sentiment analysis, and chatbot tooling for stream communities, with more features on the way.
+          - generic [ref=e126]:
+            - generic [ref=e127]: Next.js
+            - generic [ref=e128]: Voice AI
+            - generic [ref=e129]: Live Streaming
+            - generic [ref=e130]: YouTube API
+            - generic [ref=e131]: Sentiment Analysis
+        - link "WhyMessage Photon Residency application Relationship CRM sitting inside iMessage as an agent. Builds profiles for every contact with stats, then tells you who to hit up for any scenario — hangout, intros, advice, questions to ask. Built on Photon SDK. TypeScript Photon SDK iMessage" [ref=e132] [cursor=pointer]:
+          - /url: https://github.com/chocoliticekreem/WhyMessage
+          - generic [ref=e133]:
+            - generic [ref=e134]:
+              - heading "WhyMessage" [level=3] [ref=e135]
+              - paragraph [ref=e136]: Photon Residency application
+            - img [ref=e137]
+          - paragraph [ref=e140]: Relationship CRM sitting inside iMessage as an agent. Builds profiles for every contact with stats, then tells you who to hit up for any scenario — hangout, intros, advice, questions to ask. Built on Photon SDK.
+          - generic [ref=e141]:
+            - generic [ref=e142]: TypeScript
+            - generic [ref=e143]: Photon SDK
+            - generic [ref=e144]: iMessage
+        - link "MusicWorld SotonHack '25 Minecraft mod where the world generates from your Spotify listening. Genre shifts change biomes, landscape, and weather in real time. Lyrics stream into Minecraft chat — rewritten with Minecraft puns. Java Minecraft Forge Spotify API" [ref=e145] [cursor=pointer]:
+          - /url: https://github.com/chocoliticekreem/musicworld
+          - generic [ref=e146]:
+            - generic [ref=e147]:
+              - heading "MusicWorld" [level=3] [ref=e148]
+              - paragraph [ref=e149]: SotonHack '25
+            - img [ref=e150]
+          - paragraph [ref=e153]: Minecraft mod where the world generates from your Spotify listening. Genre shifts change biomes, landscape, and weather in real time. Lyrics stream into Minecraft chat — rewritten with Minecraft puns.
+          - generic [ref=e154]:
+            - generic [ref=e155]: Java
+            - generic [ref=e156]: Minecraft Forge
+            - generic [ref=e157]: Spotify API
+        - link "WhyCombinator UCL Build AI Festival Pitch evaluator that scores content + presentation (gestures, emotion). Multi-agent personas debate across rounds, produce a verdict, then auto-generate a Prolific survey to pitch real humans and validate the AI's take. Python Multi-agent Prolific API" [ref=e158] [cursor=pointer]:
+          - /url: https://github.com/chocoliticekreem/WhyCombinator
+          - generic [ref=e159]:
+            - generic [ref=e160]:
+              - heading "WhyCombinator" [level=3] [ref=e161]
+              - paragraph [ref=e162]: UCL Build AI Festival
+            - img [ref=e163]
+          - paragraph [ref=e166]: Pitch evaluator that scores content + presentation (gestures, emotion). Multi-agent personas debate across rounds, produce a verdict, then auto-generate a Prolific survey to pitch real humans and validate the AI's take.
+          - generic [ref=e167]:
+            - generic [ref=e168]: Python
+            - generic [ref=e169]: Multi-agent
+            - generic [ref=e170]: Prolific API
+        - link "Biomed RAG Assistant RAG system that ingests your lab reports and research papers, then answers research questions with direct retrieval from your own context. Python RAG Vector DB" [ref=e171] [cursor=pointer]:
+          - /url: https://github.com/chocoliticekreem/Biomed-RAG-assistant
+          - generic [ref=e172]:
+            - heading "Biomed RAG Assistant" [level=3] [ref=e174]
+            - img [ref=e175]
+          - paragraph [ref=e178]: RAG system that ingests your lab reports and research papers, then answers research questions with direct retrieval from your own context.
+          - generic [ref=e179]:
+            - generic [ref=e180]: Python
+            - generic [ref=e181]: RAG
+            - generic [ref=e182]: Vector DB
+        - link "Central Imaging Control Imperial HealthHack Hospital imaging traffic solution — a central control layer that routes and triages scan requests across departments to cut queue times. Python Healthcare" [ref=e183] [cursor=pointer]:
+          - /url: https://github.com/chocoliticekreem/Central-Imaging-Control---Hospital-Traffic-Solution---Imperial-HealthHack
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - heading "Central Imaging Control" [level=3] [ref=e186]
+              - paragraph [ref=e187]: Imperial HealthHack
+            - img [ref=e188]
+          - paragraph [ref=e191]: Hospital imaging traffic solution — a central control layer that routes and triages scan requests across departments to cut queue times.
+          - generic [ref=e192]:
+            - generic [ref=e193]: Python
+            - generic [ref=e194]: Healthcare
+    - generic [ref=e195]:
+      - generic [ref=e196]:
+        - paragraph [ref=e197]: 04 · stack
+        - heading "What I work with." [level=2] [ref=e198]
+      - generic [ref=e200]:
+        - generic [ref=e201]: TypeScript
+        - generic [ref=e202]: Python
+        - generic [ref=e203]: Next.js
+        - generic [ref=e204]: React
+        - generic [ref=e205]: Node.js
+        - generic [ref=e206]: FastAPI
+        - generic [ref=e207]: Postgres
+        - generic [ref=e208]: Tailwind
+        - generic [ref=e209]: n8n
+        - generic [ref=e210]: Firebase
+        - generic [ref=e211]: Supabase
+        - generic [ref=e212]: Vercel
+        - generic [ref=e213]: LangChain
+        - generic [ref=e214]: OpenAI
+        - generic [ref=e215]: Claude
+        - generic [ref=e216]: Pinecone
+        - generic [ref=e217]: RAG
+        - generic [ref=e218]: Multi-agent
+        - generic [ref=e219]: TypeScript
+        - generic [ref=e220]: Python
+        - generic [ref=e221]: Next.js
+        - generic [ref=e222]: React
+        - generic [ref=e223]: Node.js
+        - generic [ref=e224]: FastAPI
+        - generic [ref=e225]: Postgres
+        - generic [ref=e226]: Tailwind
+        - generic [ref=e227]: n8n
+        - generic [ref=e228]: Firebase
+        - generic [ref=e229]: Supabase
+        - generic [ref=e230]: Vercel
+        - generic [ref=e231]: LangChain
+        - generic [ref=e232]: OpenAI
+        - generic [ref=e233]: Claude
+        - generic [ref=e234]: Pinecone
+        - generic [ref=e235]: RAG
+        - generic [ref=e236]: Multi-agent
+      - generic [ref=e238]:
+        - generic [ref=e239]: Multi-agent
+        - generic [ref=e240]: RAG
+        - generic [ref=e241]: Pinecone
+        - generic [ref=e242]: Claude
+        - generic [ref=e243]: OpenAI
+        - generic [ref=e244]: LangChain
+        - generic [ref=e245]: Vercel
+        - generic [ref=e246]: Supabase
+        - generic [ref=e247]: Firebase
+        - generic [ref=e248]: n8n
+        - generic [ref=e249]: Tailwind
+        - generic [ref=e250]: Postgres
+        - generic [ref=e251]: FastAPI
+        - generic [ref=e252]: Node.js
+        - generic [ref=e253]: React
+        - generic [ref=e254]: Next.js
+        - generic [ref=e255]: Python
+        - generic [ref=e256]: TypeScript
+        - generic [ref=e257]: Multi-agent
+        - generic [ref=e258]: RAG
+        - generic [ref=e259]: Pinecone
+        - generic [ref=e260]: Claude
+        - generic [ref=e261]: OpenAI
+        - generic [ref=e262]: LangChain
+        - generic [ref=e263]: Vercel
+        - generic [ref=e264]: Supabase
+        - generic [ref=e265]: Firebase
+        - generic [ref=e266]: n8n
+        - generic [ref=e267]: Tailwind
+        - generic [ref=e268]: Postgres
+        - generic [ref=e269]: FastAPI
+        - generic [ref=e270]: Node.js
+        - generic [ref=e271]: React
+        - generic [ref=e272]: Next.js
+        - generic [ref=e273]: Python
+        - generic [ref=e274]: TypeScript
+      - generic [ref=e275]:
+        - generic [ref=e276]:
+          - heading "Focus" [level=3] [ref=e277]
+          - list [ref=e278]:
+            - listitem [ref=e279]: AI automations
+            - listitem [ref=e280]: Full-Stack Development
+            - listitem [ref=e281]: TypeScript
+            - listitem [ref=e282]: Python
+            - listitem [ref=e283]: ML for neuroscience
+        - generic [ref=e284]:
+          - heading "Certifications" [level=3] [ref=e285]
+          - list [ref=e286]:
+            - listitem [ref=e287]: Tata — GenAI Powered Data Analytics Job Simulation
+            - listitem [ref=e288]: Python Data Associate
+            - listitem [ref=e289]: BCG — GenAI Job Simulation
+    - generic [ref=e290]:
+      - paragraph [ref=e291]: 05 · contact
+      - heading "Connect with me!" [level=2] [ref=e292]
+      - paragraph [ref=e293]: "Always down to chat about AI agents, medical ML, or weird side projects. Quickest way to reach me:"
+      - list [ref=e294]:
+        - listitem [ref=e295]:
+          - link "Email anson9m23@gmail.com" [ref=e296] [cursor=pointer]:
+            - /url: mailto:anson9m23@gmail.com
+            - img [ref=e297]
+            - generic [ref=e300]:
+              - paragraph [ref=e301]: Email
+              - paragraph [ref=e302]: anson9m23@gmail.com
+        - listitem [ref=e303]:
+          - link "GitHub chocoliticekreem" [ref=e304] [cursor=pointer]:
+            - /url: https://github.com/chocoliticekreem
+            - img [ref=e305]
+            - generic [ref=e307]:
+              - paragraph [ref=e308]: GitHub
+              - paragraph [ref=e309]: chocoliticekreem
+        - listitem [ref=e310]:
+          - link "LinkedIn ansonwoo" [ref=e311] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/ansonwoo
+            - img [ref=e312]
+            - generic [ref=e314]:
+              - paragraph [ref=e315]: LinkedIn
+              - paragraph [ref=e316]: ansonwoo
+  - contentinfo [ref=e317]:
+    - paragraph [ref=e319]: built by anson · shipped with next.js + tailwind
+  - button "Open Next.js Dev Tools" [ref=e325] [cursor=pointer]:
+    - img [ref=e326]

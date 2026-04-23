@@ -2,7 +2,7 @@
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
 
 export function Quote() {
   const QUOTE_REVEAL_END = 0.72;
@@ -10,14 +10,10 @@ export function Quote() {
   const QUOTE_RESET_POINT = 0.5;
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const prevProgressRef = useRef(0);
   const pauseTopRef = useRef<number | null>(null);
   const [hasContinued, setHasContinued] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
+  const scrollYProgress = useMotionValue(0);
 
   // Sprite launch: starts large on the record player, then flies up-left into open sky.
   const spriteX = useTransform(scrollYProgress, [0, 0.14, 0.42, 0.72], ["28vw", "24vw", "8vw", "-18vw"]);
@@ -40,26 +36,44 @@ export function Quote() {
   // Scroll hint fades as user starts scrolling
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (reduced) {
-      return;
-    }
+  useEffect(() => {
+    if (reduced) return;
 
-    const prev = prevProgressRef.current;
-    prevProgressRef.current = latest;
+    const onScroll = () => {
+      const section = ref.current;
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top + window.scrollY;
+      const scrollable = section.offsetHeight - window.innerHeight;
+      const progress = Math.max(0, Math.min(1, (window.scrollY - sectionTop) / scrollable));
+      scrollYProgress.set(progress);
 
-    if (latest < QUOTE_RESET_POINT) {
-      setHasContinued(false);
-      setIsPaused(false);
-      pauseTopRef.current = null;
-      return;
-    }
+      if (progress < QUOTE_RESET_POINT) {
+        setHasContinued(false);
+        setIsPaused(false);
+        pauseTopRef.current = null;
+        return;
+      }
 
-    if (!hasContinued && prev < QUOTE_HOLD_START && latest >= QUOTE_HOLD_START) {
-      pauseTopRef.current = window.scrollY;
-      setIsPaused(true);
-    }
-  });
+      setHasContinued((hc) => {
+        if (!hc && progress >= QUOTE_HOLD_START) {
+          if (pauseTopRef.current == null) {
+            pauseTopRef.current = window.scrollY;
+          }
+          setIsPaused(true);
+        }
+        return hc;
+      });
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [reduced, scrollYProgress]);
 
   useEffect(() => {
     if (reduced || !isPaused || hasContinued) {
