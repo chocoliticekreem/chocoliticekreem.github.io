@@ -1,13 +1,14 @@
 "use client";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
-import { useRef, useState } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 export function Quote() {
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const [hasContinued, setHasContinued] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
@@ -35,8 +36,44 @@ export function Quote() {
   // Scroll hint fades as user starts scrolling
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (reduced || hasContinued) {
+      return;
+    }
+
+    setIsPaused(latest >= 0.62);
+  });
+
+  useEffect(() => {
+    if (reduced || !isPaused || hasContinued) {
+      return;
+    }
+
+    const preventScroll = (event: Event) => {
+      event.preventDefault();
+    };
+
+    const preventKeyScroll = (event: KeyboardEvent) => {
+      const lockedKeys = ["ArrowDown", "PageDown", "Space", "End"];
+      if (lockedKeys.includes(event.code) || lockedKeys.includes(event.key)) {
+        event.preventDefault();
+      }
+    };
+
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+    window.addEventListener("keydown", preventKeyScroll);
+
+    return () => {
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("keydown", preventKeyScroll);
+    };
+  }, [hasContinued, isPaused, reduced]);
+
   const continueDown = () => {
     setHasContinued(true);
+    setIsPaused(false);
     document.getElementById("experience")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -136,9 +173,9 @@ export function Quote() {
             onClick={continueDown}
             style={{ opacity: continuePromptOpacity }}
             initial={false}
-            animate={{ y: [0, 4, 0] }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="absolute bottom-8 left-1/2 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/85 backdrop-blur-sm transition-colors hover:bg-white/15"
+            animate={isPaused ? { y: [0, 4, 0] } : { y: 12 }}
+            transition={{ duration: 1.2, ease: "easeOut", repeat: isPaused ? Infinity : 0 }}
+            className={`absolute bottom-8 left-1/2 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/85 backdrop-blur-sm transition-colors hover:bg-white/15 ${isPaused ? "pointer-events-auto" : "pointer-events-none"}`}
           >
             continue
             <ChevronDown className="h-4 w-4" />
