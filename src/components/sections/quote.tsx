@@ -7,7 +7,6 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform 
 export function Quote() {
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const touchStartYRef = useRef<number | null>(null);
   const prevProgressRef = useRef(0);
   const [hasContinued, setHasContinued] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -75,58 +74,16 @@ export function Quote() {
       return;
     }
 
-    const isQuoteActive = () => {
-      const rect = ref.current?.getBoundingClientRect();
-      if (!rect) {
-        return false;
-      }
-
-      return rect.top <= 0 && rect.bottom > window.innerHeight;
-    };
-
-    const preventWheelDown = (event: WheelEvent) => {
-      if (isQuoteActive() && event.deltaY > 0) {
-        event.preventDefault();
-      }
-    };
-
-    const recordTouchStart = (event: TouchEvent) => {
-      touchStartYRef.current = event.touches[0]?.clientY ?? null;
-    };
-
-    const preventTouchDown = (event: TouchEvent) => {
-      const currentY = event.touches[0]?.clientY;
-      const startY = touchStartYRef.current;
-      if (currentY == null || startY == null) {
-        return;
-      }
-
-      const delta = startY - currentY;
-      if (isQuoteActive() && delta > 0) {
-        event.preventDefault();
-      }
-    };
-
     const preventKeyScroll = (event: KeyboardEvent) => {
-      if (!isQuoteActive()) {
-        return;
-      }
-
       const lockedKeys = ["ArrowDown", "PageDown", "Space", "End"];
       if (lockedKeys.includes(event.code) || lockedKeys.includes(event.key)) {
         event.preventDefault();
       }
     };
 
-    window.addEventListener("wheel", preventWheelDown, { passive: false });
-    window.addEventListener("touchstart", recordTouchStart, { passive: true });
-    window.addEventListener("touchmove", preventTouchDown, { passive: false });
     window.addEventListener("keydown", preventKeyScroll);
 
     return () => {
-      window.removeEventListener("wheel", preventWheelDown);
-      window.removeEventListener("touchstart", recordTouchStart);
-      window.removeEventListener("touchmove", preventTouchDown);
       window.removeEventListener("keydown", preventKeyScroll);
     };
   }, [hasContinued, isPaused, reduced]);
@@ -240,6 +197,21 @@ export function Quote() {
             continue
             <ChevronDown className="h-4 w-4" />
           </motion.button>
+        )}
+
+        {isPaused && !hasContinued && (
+          <div
+            aria-hidden
+            className="fixed inset-0 z-[35]"
+            onWheel={(event) => {
+              if (event.deltaY > 0) {
+                event.preventDefault();
+              }
+            }}
+            onTouchMove={(event) => {
+              event.preventDefault();
+            }}
+          />
         )}
       </div>
     </section>
