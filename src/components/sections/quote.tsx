@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 export function Quote() {
-  const QUOTE_REVEAL_END = 0.62;
-  const QUOTE_HOLD_START = 0.78;
+  const QUOTE_REVEAL_END = 0.72;
+  const QUOTE_HOLD_START = 0.76;
   const QUOTE_RESET_POINT = 0.5;
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
@@ -23,45 +23,22 @@ export function Quote() {
   const spriteX = useTransform(scrollYProgress, [0, 0.14, 0.42, 0.72], ["28vw", "24vw", "8vw", "-18vw"]);
   const spriteY = useTransform(scrollYProgress, [0, 0.14, 0.42, 0.72], ["33vh", "27vh", "2vh", "-36vh"]);
   const spriteScale = useTransform(scrollYProgress, [0, 0.14, 0.42, 0.72], [1.05, 1.14, 1.42, 1.7]);
-  const spriteOpacity = useTransform(scrollYProgress, [0, 0.45, 0.64, 0.76], [1, 1, 0.35, 0]);
+  const spriteOpacity = useTransform(scrollYProgress, [0, 0.5, 0.66, 0.74], [1, 1, 0.35, 0]);
   const spriteRotate = useTransform(scrollYProgress, [0, 0.42, 0.72], [-18, -10, -26]);
   const spriteFlip = useTransform(scrollYProgress, [0, 1], [-1, -1]);
 
   // Background stays present for the launch, then clears out for the quote reveal.
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.44, 0.68], [1, 0.58, 0]);
-  const bgScale = useTransform(scrollYProgress, [0, 0.68], [1.07, 0.98]);
-  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.34, QUOTE_REVEAL_END], [0, 0.94]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.5, 0.72], [1, 0.58, 0]);
+  const bgScale = useTransform(scrollYProgress, [0, 0.72], [1.07, 0.98]);
+  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.4, QUOTE_REVEAL_END], [0, 0.94]);
 
   // Quote fades in well before the section ends so it has time to fully land.
-  const quoteOpacity = useTransform(scrollYProgress, [0.4, QUOTE_REVEAL_END], [0, 1]);
-  const quoteY = useTransform(scrollYProgress, [0.4, QUOTE_REVEAL_END], [80, 0]);
-  const quoteScale = useTransform(scrollYProgress, [0.4, QUOTE_REVEAL_END], [0.96, 1]);
+  const quoteOpacity = useTransform(scrollYProgress, [0.5, QUOTE_REVEAL_END], [0, 1]);
+  const quoteY = useTransform(scrollYProgress, [0.5, QUOTE_REVEAL_END], [80, 0]);
+  const quoteScale = useTransform(scrollYProgress, [0.5, QUOTE_REVEAL_END], [0.96, 1]);
 
   // Scroll hint fades as user starts scrolling
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-
-  const getQuoteHoldTop = () => {
-    const section = ref.current;
-    if (!section) {
-      return null;
-    }
-
-    const rect = section.getBoundingClientRect();
-    const sectionTop = rect.top + window.scrollY;
-    const viewportHeight = window.innerHeight;
-    const scrollableDistance = section.offsetHeight - viewportHeight;
-    return sectionTop + scrollableDistance * QUOTE_HOLD_START;
-  };
-
-  const snapToQuoteHold = () => {
-    const targetScrollTop = getQuoteHoldTop();
-    if (targetScrollTop == null) {
-      return;
-    }
-
-    pauseTopRef.current = targetScrollTop;
-    window.scrollTo({ top: targetScrollTop, behavior: "auto" });
-  };
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (reduced) {
@@ -79,8 +56,8 @@ export function Quote() {
     }
 
     if (!hasContinued && prev < QUOTE_HOLD_START && latest >= QUOTE_HOLD_START) {
+      pauseTopRef.current = window.scrollY;
       setIsPaused(true);
-      snapToQuoteHold();
     }
   });
 
@@ -94,30 +71,45 @@ export function Quote() {
       return;
     }
 
-    const preventScroll = (e: Event) => {
-      e.preventDefault();
+    const blockDownWheel = (e: WheelEvent) => {
+      if (e.deltaY > 0) {
+        e.preventDefault();
+      }
     };
-    const preventKeys = (e: KeyboardEvent) => {
-      const blocked = [" ", "ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End"];
+    let lastTouchY: number | null = null;
+    const onTouchStart = (e: TouchEvent) => {
+      lastTouchY = e.touches[0]?.clientY ?? null;
+    };
+    const blockDownTouch = (e: TouchEvent) => {
+      const y = e.touches[0]?.clientY;
+      if (lastTouchY != null && y != null && y < lastTouchY) {
+        e.preventDefault();
+      }
+      lastTouchY = y ?? lastTouchY;
+    };
+    const blockDownKeys = (e: KeyboardEvent) => {
+      const blocked = [" ", "ArrowDown", "PageDown", "End"];
       if (blocked.includes(e.key)) {
         e.preventDefault();
       }
     };
     const onScroll = () => {
-      if (Math.abs(window.scrollY - holdTop) > 0.5) {
+      if (window.scrollY > holdTop + 0.5) {
         window.scrollTo({ top: holdTop, behavior: "auto" });
       }
     };
 
-    window.addEventListener("wheel", preventScroll, { passive: false });
-    window.addEventListener("touchmove", preventScroll, { passive: false });
-    window.addEventListener("keydown", preventKeys);
+    window.addEventListener("wheel", blockDownWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", blockDownTouch, { passive: false });
+    window.addEventListener("keydown", blockDownKeys);
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("wheel", preventScroll);
-      window.removeEventListener("touchmove", preventScroll);
-      window.removeEventListener("keydown", preventKeys);
+      window.removeEventListener("wheel", blockDownWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", blockDownTouch);
+      window.removeEventListener("keydown", blockDownKeys);
       window.removeEventListener("scroll", onScroll);
     };
   }, [hasContinued, isPaused, reduced]);
