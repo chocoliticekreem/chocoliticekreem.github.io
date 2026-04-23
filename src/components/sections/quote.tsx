@@ -1,15 +1,13 @@
 "use client";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 export function Quote() {
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
   const [hasContinued, setHasContinued] = useState(false);
-  const prevProgressRef = useRef(0);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
@@ -32,44 +30,13 @@ export function Quote() {
   const quoteOpacity = useTransform(scrollYProgress, [0.4, 0.62], [0, 1]);
   const quoteY = useTransform(scrollYProgress, [0.4, 0.62], [80, 0]);
   const quoteScale = useTransform(scrollYProgress, [0.4, 0.62], [0.96, 1]);
-  const continuePromptOpacity = useTransform(scrollYProgress, [0.52, 0.6], [0, 1]);
+  const continuePromptOpacity = useTransform(scrollYProgress, [0.54, 0.66], [0, 1]);
 
   // Scroll hint fades as user starts scrolling
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const prev = prevProgressRef.current;
-    prevProgressRef.current = latest;
-
-    if (reduced || hasContinued || isPaused) {
-      return;
-    }
-
-    // Pause once the quote has fully landed while the user is still scrolling downward.
-    if (prev < 0.62 && latest >= 0.62) {
-      setIsPaused(true);
-    }
-  });
-
-  useEffect(() => {
-    if (reduced || !isPaused) {
-      return;
-    }
-
-    const htmlOverflow = document.documentElement.style.overflow;
-    const bodyOverflow = document.body.style.overflow;
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.documentElement.style.overflow = htmlOverflow;
-      document.body.style.overflow = bodyOverflow;
-    };
-  }, [isPaused, reduced]);
-
   const continueDown = () => {
     setHasContinued(true);
-    setIsPaused(false);
     document.getElementById("experience")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -169,9 +136,9 @@ export function Quote() {
             onClick={continueDown}
             style={{ opacity: continuePromptOpacity }}
             initial={false}
-            animate={isPaused ? { opacity: 1, y: 0 } : { y: 16 }}
+            animate={{ y: [0, 4, 0] }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className={`absolute bottom-8 left-1/2 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/85 backdrop-blur-sm transition-colors hover:bg-white/15 ${isPaused ? "pointer-events-auto" : "pointer-events-none"}`}
+            className="absolute bottom-8 left-1/2 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/85 backdrop-blur-sm transition-colors hover:bg-white/15"
           >
             continue
             <ChevronDown className="h-4 w-4" />
