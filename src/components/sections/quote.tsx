@@ -24,9 +24,9 @@ export function Quote() {
   const spriteFlip = useTransform(scrollYProgress, [0, 1], [-1, -1]);
 
   // Background stays present for the launch, then clears out for the quote reveal.
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.44, 0.68], [1, 0.72, 0]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.44, 0.68], [1, 0.58, 0]);
   const bgScale = useTransform(scrollYProgress, [0, 0.68], [1.07, 0.98]);
-  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.34, 0.62], [0, 0.82]);
+  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.34, 0.62], [0, 0.94]);
 
   // Quote fades in well before the section ends so it has time to fully land.
   const quoteOpacity = useTransform(scrollYProgress, [0.4, 0.62], [0, 1]);
@@ -38,11 +38,19 @@ export function Quote() {
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (reduced || hasContinued) {
+    if (reduced) {
       return;
     }
 
-    setIsPaused(latest >= 0.62);
+    if (latest < 0.52) {
+      setHasContinued(false);
+      setIsPaused(false);
+      return;
+    }
+
+    if (!hasContinued) {
+      setIsPaused(latest >= 0.62);
+    }
   });
 
   useEffect(() => {
@@ -142,7 +150,7 @@ export function Quote() {
 
         <motion.div
           style={{ opacity: quoteBackdropOpacity }}
-          className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,_rgba(255,240,221,0.14)_0%,_rgba(77,14,85,0.58)_38%,_rgba(18,5,35,0.8)_100%)]"
+          className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,_rgba(255,240,221,0.08)_0%,_rgba(53,9,68,0.72)_36%,_rgba(10,3,24,0.94)_100%)]"
         />
 
         {/* Sprite flying out */}

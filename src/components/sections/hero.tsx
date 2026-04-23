@@ -48,7 +48,7 @@ function AboutInCard() {
             Biomed student,
             <br />
             <em className="not-italic bg-gradient-to-r from-amber-200 via-rose-200 to-white bg-clip-text text-transparent">
-              accidental engineer.
+              active builder.
             </em>
           </h2>
           <p className="text-sm leading-relaxed text-white/90 md:text-base">
