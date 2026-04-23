@@ -96,13 +96,13 @@ export function Quote() {
             ★ homecoming · kanye west
           </p>
           <h2 className="mt-6 font-display max-w-5xl text-4xl font-normal leading-tight text-white md:text-7xl">
-            Shoot for the stars,
+            Reach for the stars,
             <br />
             <em className="not-italic bg-gradient-to-r from-white via-amber-200 to-rose-200 bg-clip-text text-transparent">
               so if you fall
             </em>
             <br />
-            you land on the clouds.
+            you land on a cloud.
           </h2>
           <div className="mt-10 h-px w-24 bg-white/40" />
           <p className="mt-6 max-w-md text-sm italic text-white/85 md:text-base">
