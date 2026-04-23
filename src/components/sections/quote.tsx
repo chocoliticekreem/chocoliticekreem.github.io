@@ -24,9 +24,9 @@ export function Quote() {
   const spriteFlip = useTransform(scrollYProgress, [0, 1], [-1, -1]);
 
   // Background stays present for the launch, then clears out for the quote reveal.
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.5, 0.72], [1, 0.58, 0]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.5, 0.72], [1, 0.85, 0.55]);
   const bgScale = useTransform(scrollYProgress, [0, 0.72], [1.07, 0.98]);
-  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.4, QUOTE_REVEAL_END], [0, 0.94]);
+  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.4, QUOTE_REVEAL_END], [0, 0.5]);
 
   // Quote fades in well before the section ends so it has time to fully land.
   const quoteOpacity = useTransform(scrollYProgress, [0.5, QUOTE_REVEAL_END], [0, 1]);
