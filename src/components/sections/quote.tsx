@@ -8,6 +8,7 @@ export function Quote() {
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const touchStartYRef = useRef<number | null>(null);
+  const prevProgressRef = useRef(0);
   const [hasContinued, setHasContinued] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const { scrollYProgress } = useScroll({
@@ -37,10 +38,25 @@ export function Quote() {
   // Scroll hint fades as user starts scrolling
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
+  const snapToQuoteHold = () => {
+    const section = ref.current;
+    if (!section) {
+      return;
+    }
+
+    const viewportHeight = window.innerHeight;
+    const scrollableDistance = section.offsetHeight - viewportHeight;
+    const targetScrollTop = section.offsetTop + scrollableDistance * 0.62;
+    window.scrollTo({ top: targetScrollTop, behavior: "auto" });
+  };
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (reduced) {
       return;
     }
+
+    const prev = prevProgressRef.current;
+    prevProgressRef.current = latest;
 
     if (latest < 0.52) {
       setHasContinued(false);
@@ -48,8 +64,9 @@ export function Quote() {
       return;
     }
 
-    if (!hasContinued) {
-      setIsPaused(latest >= 0.62);
+    if (!hasContinued && prev < 0.62 && latest >= 0.62) {
+      setIsPaused(true);
+      snapToQuoteHold();
     }
   });
 
