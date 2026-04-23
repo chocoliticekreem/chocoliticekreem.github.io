@@ -46,9 +46,11 @@ export function Quote() {
       return null;
     }
 
+    const rect = section.getBoundingClientRect();
+    const sectionTop = rect.top + window.scrollY;
     const viewportHeight = window.innerHeight;
     const scrollableDistance = section.offsetHeight - viewportHeight;
-    return section.offsetTop + scrollableDistance * QUOTE_HOLD_START;
+    return sectionTop + scrollableDistance * QUOTE_HOLD_START;
   };
 
   const snapToQuoteHold = () => {
@@ -89,10 +91,15 @@ export function Quote() {
 
     const htmlOverflow = document.documentElement.style.overflow;
     const bodyOverflow = document.body.style.overflow;
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
+    const raf = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.documentElement.style.overflow = "hidden";
+        document.body.style.overflow = "hidden";
+      });
+    });
 
     return () => {
+      cancelAnimationFrame(raf);
       document.documentElement.style.overflow = htmlOverflow;
       document.body.style.overflow = bodyOverflow;
     };
