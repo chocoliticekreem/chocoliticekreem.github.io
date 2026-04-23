@@ -1,6 +1,6 @@
 # Anson Woo — Portfolio
 
-Personal site at [chocoliticekreem.github.io](https://chocoliticekreem.github.io).
+Portfolio site for Anson Woo.
 
 Built with Next.js 16, TypeScript, Tailwind v4, Framer Motion.
 
@@ -9,7 +9,7 @@ Built with Next.js 16, TypeScript, Tailwind v4, Framer Motion.
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # static export to ./out
+npm run build
 ```
 
 ## Editing content
@@ -20,14 +20,15 @@ The hero sprite is [`public/sprite.png`](public/sprite.png) — swap the file to
 
 ## Deploy
 
-Pushing to `main` auto-deploys to GitHub Pages via the workflow in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). Static export is configured in [`next.config.ts`](next.config.ts).
+This project is now configured for Vercel-first deployment.
 
-After first push, enable **Settings → Pages → Source: GitHub Actions** in the repo settings.
+Link the repo to a Vercel project and deploy from `main`, or use the Vercel CLI for preview deployments.
+
+The legacy GitHub Pages workflow still exists in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), but it is no longer the primary deployment target.
 
 ## Clone and make it your own
 
 1. Fork or clone this repo.
-2. Rename it to `<your-username>.github.io`.
-3. Edit `src/lib/content.ts`, replace `public/sprite.png`.
-4. Enable Pages under **Settings → Pages → Source: GitHub Actions**.
-5. Push — the workflow handles the rest.
+2. Edit `src/lib/content.ts`, replace `public/sprite.png`.
+3. Link the repo to your Vercel project.
+4. Push to your production branch or create preview deploys from the Vercel dashboard/CLI.
