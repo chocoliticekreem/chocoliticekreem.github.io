@@ -85,6 +85,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "Stream Mind",
+    context: "1st place Gradium · 2nd place Google DeepMind · 3rd overall at {Tech:Europe} London AI Hackathon",
+    description:
+      "Live-streaming AI copilot for creators. Built voice-controlled clipping, instant clip retrieval, YouTube upload flows, voice-interactive chat polls, live chat sentiment analysis, and chatbot tooling for stream communities, with more features on the way.",
+    tech: ["Next.js", "Voice AI", "Live Streaming", "YouTube API", "Sentiment Analysis"],
+    url: "https://github.com/Stream-Mind/Stream-Mind",
+  },
+  {
     name: "WhyMessage",
     context: "Photon Residency application",
     description:

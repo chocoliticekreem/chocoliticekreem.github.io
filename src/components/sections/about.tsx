@@ -8,7 +8,7 @@ export function About() {
       </p>
       <h2 className="font-display mb-8 text-4xl font-semibold text-slate-900 dark:text-white md:text-6xl">
         Biomed student,<br />
-        accidental engineer.
+        active builder.
       </h2>
       <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl">
         {profile.bio}

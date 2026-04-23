@@ -31,7 +31,7 @@ export function Contact() {
         05 · contact
       </p>
       <h2 className="font-display mb-8 text-4xl font-semibold text-slate-900 dark:text-white md:text-6xl">
-        Want to build something?
+        Connect with me.
       </h2>
       <p className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
         Always down to chat about AI agents, medical ML, or weird side projects. Quickest way to reach me:
