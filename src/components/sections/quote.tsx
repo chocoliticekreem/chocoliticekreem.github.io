@@ -11,21 +11,23 @@ export function Quote() {
     offset: ["start start", "end end"],
   });
 
-  // Sprite launch: starts low in the scene, then arcs up-left and slightly toward the viewer.
-  const spriteX = useTransform(scrollYProgress, [0, 0.2, 0.58, 0.9], ["16vw", "14vw", "0vw", "-12vw"]);
-  const spriteY = useTransform(scrollYProgress, [0, 0.18, 0.58, 0.9], ["28vh", "22vh", "-10vh", "-52vh"]);
-  const spriteScale = useTransform(scrollYProgress, [0, 0.2, 0.58, 0.9], [0.72, 0.82, 1.16, 1.52]);
-  const spriteOpacity = useTransform(scrollYProgress, [0, 0.64, 0.82, 0.92], [0.92, 1, 0.5, 0]);
-  const spriteRotate = useTransform(scrollYProgress, [0, 0.58, 0.9], [10, 3, -12]);
+  // Sprite launch: starts large on the record player, then flies up-left into open sky.
+  const spriteX = useTransform(scrollYProgress, [0, 0.14, 0.42, 0.72], ["28vw", "24vw", "8vw", "-18vw"]);
+  const spriteY = useTransform(scrollYProgress, [0, 0.14, 0.42, 0.72], ["33vh", "27vh", "2vh", "-36vh"]);
+  const spriteScale = useTransform(scrollYProgress, [0, 0.14, 0.42, 0.72], [1.05, 1.14, 1.42, 1.7]);
+  const spriteOpacity = useTransform(scrollYProgress, [0, 0.45, 0.64, 0.76], [1, 1, 0.35, 0]);
+  const spriteRotate = useTransform(scrollYProgress, [0, 0.42, 0.72], [-18, -10, -26]);
+  const spriteFlip = useTransform(scrollYProgress, [0, 1], [-1, -1]);
 
   // Background stays present for the launch, then clears out for the quote reveal.
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.62, 0.9], [1, 1, 0.12]);
-  const bgScale = useTransform(scrollYProgress, [0, 0.9], [1.06, 1]);
-  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.52, 0.86], [0, 1]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.44, 0.68], [1, 0.72, 0]);
+  const bgScale = useTransform(scrollYProgress, [0, 0.68], [1.07, 0.98]);
+  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.34, 0.62], [0, 1]);
 
-  // Quote fades in toward the end
-  const quoteOpacity = useTransform(scrollYProgress, [0.68, 0.92], [0, 1]);
-  const quoteY = useTransform(scrollYProgress, [0.68, 0.92], [56, 0]);
+  // Quote fades in well before the section ends so it has time to fully land.
+  const quoteOpacity = useTransform(scrollYProgress, [0.42, 0.68], [0, 1]);
+  const quoteY = useTransform(scrollYProgress, [0.42, 0.68], [80, 0]);
+  const quoteScale = useTransform(scrollYProgress, [0.42, 0.68], [0.96, 1]);
 
   // Scroll hint fades as user starts scrolling
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
@@ -74,28 +76,30 @@ export function Quote() {
           }}
           className="relative z-20 flex items-center justify-center will-change-transform"
         >
-          <Image
-            src="/image.png"
-            alt="Anson sprite launching"
-            width={600}
-            height={600}
-            unoptimized
-            priority
-            sizes="(max-width: 768px) 42vw, 28vw"
-            className="image-pixel h-auto w-[180px] drop-shadow-[0_0_40px_rgba(255,150,80,0.45)] md:w-[240px]"
-            draggable={false}
-          />
+          <motion.div style={{ scaleX: spriteFlip }} className="origin-center">
+            <Image
+              src="/image.png"
+              alt="Anson sprite launching"
+              width={600}
+              height={600}
+              unoptimized
+              priority
+              sizes="(max-width: 768px) 52vw, 34vw"
+              className="image-pixel h-auto w-[260px] drop-shadow-[0_0_58px_rgba(255,153,72,0.72)] md:w-[360px]"
+              draggable={false}
+            />
+          </motion.div>
         </motion.div>
 
         {/* Quote — fades in as sprite exits */}
         <motion.div
-          style={{ opacity: quoteOpacity, y: quoteY }}
+          style={{ opacity: quoteOpacity, y: quoteY, scale: quoteScale }}
           className="absolute inset-0 z-30 flex flex-col items-center justify-center px-6 text-center"
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/70">
+          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/80">
             ★ homecoming · kanye west
           </p>
-          <h2 className="mt-6 font-display max-w-5xl text-4xl font-normal leading-tight text-white md:text-7xl">
+          <h2 className="mt-6 max-w-5xl font-display text-4xl font-normal leading-tight text-white [text-shadow:0_6px_34px_rgba(0,0,0,0.55)] md:text-7xl">
             Reach for the stars,
             <br />
             <em className="not-italic bg-gradient-to-r from-white via-amber-200 to-rose-200 bg-clip-text text-transparent">
@@ -104,8 +108,8 @@ export function Quote() {
             <br />
             you land on a cloud.
           </h2>
-          <div className="mt-10 h-px w-24 bg-white/40" />
-          <p className="mt-6 max-w-md text-sm italic text-white/85 md:text-base">
+          <div className="mt-10 h-px w-24 bg-white/50" />
+          <p className="mt-6 max-w-md text-sm italic text-white/90 [text-shadow:0_4px_22px_rgba(0,0,0,0.5)] md:text-base">
             The closest thing to a personal mission statement. It&apos;s why I keep shipping.
           </p>
         </motion.div>
@@ -132,20 +136,20 @@ function StaticQuote() {
           width={600}
           height={600}
           unoptimized
-          sizes="180px"
-          className="image-pixel mb-8 h-auto w-[180px] drop-shadow-[0_0_30px_rgba(255,150,80,0.45)]"
+          sizes="220px"
+          className="image-pixel mb-8 h-auto w-[220px] drop-shadow-[0_0_36px_rgba(255,150,80,0.55)]"
         />
         <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/70">
           ★ homecoming · kanye west
         </p>
         <h2 className="mt-6 font-display text-4xl font-normal leading-tight text-white md:text-7xl">
-          Shoot for the stars,
+          Reach for the stars,
           <br />
           <em className="not-italic bg-gradient-to-r from-white via-amber-200 to-rose-200 bg-clip-text text-transparent">
             so if you fall
           </em>
           <br />
-          you land on the clouds.
+          you land on a cloud.
         </h2>
       </div>
     </section>
