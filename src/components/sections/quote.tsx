@@ -5,6 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 export function Quote() {
+  const QUOTE_REVEAL_END = 0.62;
+  const QUOTE_HOLD_START = 0.72;
+  const QUOTE_RESET_POINT = 0.56;
   const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const prevProgressRef = useRef(0);
@@ -27,12 +30,12 @@ export function Quote() {
   // Background stays present for the launch, then clears out for the quote reveal.
   const bgOpacity = useTransform(scrollYProgress, [0, 0.44, 0.68], [1, 0.58, 0]);
   const bgScale = useTransform(scrollYProgress, [0, 0.68], [1.07, 0.98]);
-  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.34, 0.62], [0, 0.94]);
+  const quoteBackdropOpacity = useTransform(scrollYProgress, [0.34, QUOTE_REVEAL_END], [0, 0.94]);
 
   // Quote fades in well before the section ends so it has time to fully land.
-  const quoteOpacity = useTransform(scrollYProgress, [0.4, 0.62], [0, 1]);
-  const quoteY = useTransform(scrollYProgress, [0.4, 0.62], [80, 0]);
-  const quoteScale = useTransform(scrollYProgress, [0.4, 0.62], [0.96, 1]);
+  const quoteOpacity = useTransform(scrollYProgress, [0.4, QUOTE_REVEAL_END], [0, 1]);
+  const quoteY = useTransform(scrollYProgress, [0.4, QUOTE_REVEAL_END], [80, 0]);
+  const quoteScale = useTransform(scrollYProgress, [0.4, QUOTE_REVEAL_END], [0.96, 1]);
 
   // Scroll hint fades as user starts scrolling
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
@@ -45,7 +48,7 @@ export function Quote() {
 
     const viewportHeight = window.innerHeight;
     const scrollableDistance = section.offsetHeight - viewportHeight;
-    return section.offsetTop + scrollableDistance * 0.62;
+    return section.offsetTop + scrollableDistance * QUOTE_HOLD_START;
   };
 
   const snapToQuoteHold = () => {
@@ -66,14 +69,14 @@ export function Quote() {
     const prev = prevProgressRef.current;
     prevProgressRef.current = latest;
 
-    if (latest < 0.52) {
+    if (latest < QUOTE_RESET_POINT) {
       setHasContinued(false);
       setIsPaused(false);
       pauseTopRef.current = null;
       return;
     }
 
-    if (!hasContinued && prev < 0.62 && latest >= 0.62) {
+    if (!hasContinued && prev < QUOTE_HOLD_START && latest >= QUOTE_HOLD_START) {
       setIsPaused(true);
       snapToQuoteHold();
     }
