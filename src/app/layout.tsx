@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   title: "Anson Woo — Builder",
   description:
     "Medical Biosciences @ Imperial, Founding Engineer @ EdU. AI automations, full-stack, ML for neuroscience.",
+  icons: {
+    icon: "/image%20copy.png",
+    apple: "/image%20copy.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -16,14 +16,14 @@ export function Hero() {
             className="flex flex-col items-center gap-5 pb-8"
           >
             <p className="font-mono text-[10px] uppercase tracking-[0.45em] text-rose-500 dark:text-rose-300">
-              London · AI builder · biosciences
+              HK · LDN 
             </p>
             <h1 className="font-display text-[4.6rem] font-normal leading-[0.85] text-slate-900 dark:text-white md:text-[8.5rem] lg:text-[11rem]">
               {profile.name}
             </h1>
             <div className="h-px w-28 bg-gradient-to-r from-transparent via-rose-400/70 to-transparent" />
             <p className="max-w-2xl text-balance px-4 text-base leading-relaxed text-slate-600 dark:text-slate-300 md:text-xl">
-              Building AI products, automations, and weird internet software from London.
+              Building everday.
             </p>
           </motion.div>
         }
