@@ -18,11 +18,20 @@ function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+function XIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
 export function Contact() {
   const links = [
     { label: "Email", href: `mailto:${profile.email}`, Icon: Mail, text: profile.email },
     { label: "GitHub", href: profile.github, Icon: GithubIcon, text: "chocoliticekreem" },
     { label: "LinkedIn", href: profile.linkedin, Icon: LinkedinIcon, text: "ansonwoo" },
+    { label: "X", href: profile.x, Icon: XIcon, text: "fluffyfluffycow" },
   ];
 
   return (
@@ -36,7 +45,7 @@ export function Contact() {
       <p className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
         Always down to chat about AI agents, medical ML, or weird side projects. Quickest way to reach me:
       </p>
-      <ul className="grid gap-3 sm:grid-cols-3">
+      <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
         {links.map(({ label, href, Icon, text }) => (
           <li key={label}>
             <a

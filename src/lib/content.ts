@@ -5,6 +5,7 @@ export const profile = {
   email: "anson9m23@gmail.com",
   github: "https://github.com/chocoliticekreem",
   linkedin: "https://www.linkedin.com/in/ansonwoo",
+  x: "https://x.com/fluffyfluffycow",
   bio: "Year 2 Medical Biosciences student at Imperial, self-teaching AI/ML. Founding Engineer at EdU, building AI automations at Speed NetworkNow and CodeWords. Year 3 placement lined up at NeuroX working on ML for neuroscience.",
 };
 
