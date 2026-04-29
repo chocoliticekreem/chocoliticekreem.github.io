@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   description:
     "Medical Biosciences @ Imperial, Founding Engineer @ EdU. AI automations, full-stack, ML for neuroscience.",
   icons: {
-    icon: "/image%20copy.png",
-    apple: "/image%20copy.png",
+    icon: "/favicon.ico",
+    apple: "/image.png",
   },
 };
 
