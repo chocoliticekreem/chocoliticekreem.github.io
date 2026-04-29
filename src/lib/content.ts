@@ -19,6 +19,13 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
+    company: "Encode Club",
+    role: "Scholar",
+    period: "Apr 2026 — Present",
+    location: "London, UK",
+    current: true,
+  },
+  {
     company: "Imperial Entrepreneurs",
     role: "Secretary",
     period: "Apr 2026 — Present",
@@ -85,6 +92,14 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    name: "Tenkai",
+    context: "Unicorn Mafia · Americas Hackathon 2026",
+    description:
+      "AR as an OS layer for the physical world. Point your phone at any object — a Red Bull, your backpack, a club entrance — and get a floating Liquid Glass UI anchored to it in 3D space. Cards surface your data in context: calories, packing checklists, venue lineups, calendar. A Gemini Live voice agent sees what you see and responds in real time. Went to a club with the product and got 8 signups on the spot.",
+    tech: ["Swift", "ARKit", "RealityKit", "FastAPI", "Gemini", "LanceDB", "SSE"],
+    url: "https://github.com/arvin-shafiei/americas-um-2026",
+  },
   {
     name: "Stream Mind",
     context: "1st place Gradium · 2nd place Google DeepMind · 3rd overall at {Tech:Europe} London AI Hackathon",
