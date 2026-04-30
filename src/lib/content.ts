@@ -56,9 +56,9 @@ export const experience: Experience[] = [
   {
     company: "Speed NetworkNow",
     role: "AI Automation Intern",
-    period: "Jan 2026 — Present",
+    period: "Jan 2026 — May 2026",
     location: "London, UK",
-    current: true,
+    current: false,
   },
   {
     company: "L'Oréal",
@@ -153,8 +153,6 @@ export const skills = {
   focus: ["AI automations", "Full-Stack Development", "TypeScript", "Python", "ML for neuroscience"],
   tools: ["React", "Next.js", "Node.js", "FastAPI", "Postgres", "RAG / Vector DBs", "Multi-agent systems", "n8n", "Firebase"],
   certs: [
-    "Tata — GenAI Powered Data Analytics Job Simulation",
     "Python Data Associate",
-    "BCG — GenAI Job Simulation",
   ],
 };
