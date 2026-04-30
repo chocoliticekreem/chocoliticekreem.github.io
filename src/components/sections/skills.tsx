@@ -36,9 +36,8 @@ export function Skills() {
       <Marquee items={mainStack} />
       <Marquee items={[...mainStack].reverse()} reverse />
 
-      <div className="mx-auto mt-16 grid max-w-4xl gap-10 px-6 md:grid-cols-2">
+      <div className="mx-auto mt-16 max-w-4xl px-6">
         <SkillGroup title="Focus" items={skills.focus} />
-        <SkillGroup title="Certifications" items={skills.certs} />
       </div>
     </section>
   );

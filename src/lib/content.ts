@@ -152,7 +152,5 @@ export const projects: Project[] = [
 export const skills = {
   focus: ["AI automations", "Full-Stack Development", "TypeScript", "Python", "ML for neuroscience"],
   tools: ["React", "Next.js", "Node.js", "FastAPI", "Postgres", "RAG / Vector DBs", "Multi-agent systems", "n8n", "Firebase"],
-  certs: [
-    "Python Data Associate",
-  ],
+  certs: [],
 };

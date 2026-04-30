@@ -23,7 +23,7 @@ export function Hero() {
             </h1>
             <div className="h-px w-28 bg-gradient-to-r from-transparent via-rose-400/70 to-transparent" />
             <p className="max-w-2xl text-balance px-4 text-base leading-relaxed text-slate-600 dark:text-slate-300 md:text-xl">
-              Building everday.
+              Building everyday.
             </p>
           </motion.div>
         }
