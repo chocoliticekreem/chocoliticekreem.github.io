@@ -43,7 +43,7 @@ export function Contact() {
         Connect with me!
       </h2>
       <p className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-        Always down to chat about AI agents, medical ML, or weird side projects. Quickest way to reach me:
+        Always down to chat about cool ideas, collaborations etc.
       </p>
       <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
         {links.map(({ label, href, Icon, text }) => (

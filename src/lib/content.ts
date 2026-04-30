@@ -19,6 +19,13 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
+    company: "Imperial AI Society",
+    role: "Head of Tech",
+    period: "Apr 2026 — Present",
+    location: "London, UK",
+    current: true,
+  },
+  {
     company: "Encode Club",
     role: "Scholar",
     period: "Apr 2026 — Present",
