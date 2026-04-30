@@ -19,9 +19,9 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    company: "Imperial AI Society",
-    role: "Head of Tech",
-    period: "Apr 2026 — Present",
+    company: "EdU CareerTech",
+    role: "Founding Engineer",
+    period: "Mar 2026 — Present",
     location: "London, UK",
     current: true,
   },
@@ -40,9 +40,9 @@ export const experience: Experience[] = [
     current: true,
   },
   {
-    company: "GDG Academy",
-    role: "Spring 2026 Cohort",
-    period: "Mar 2026 — Present",
+    company: "Imperial AI Society",
+    role: "Head of Tech",
+    period: "Apr 2026 — Present",
     location: "London, UK",
     current: true,
   },
@@ -54,8 +54,8 @@ export const experience: Experience[] = [
     current: true,
   },
   {
-    company: "EdU CareerTech",
-    role: "Founding Engineer",
+    company: "GDG Academy",
+    role: "Spring 2026 Cohort",
     period: "Mar 2026 — Present",
     location: "London, UK",
     current: true,
