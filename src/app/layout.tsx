@@ -15,7 +15,7 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Anson Woo — Builder",
   description:
-    "Medical Biosciences @ Imperial, Founding Engineer @ EdU. AI automations, full-stack, ML for neuroscience.",
+    "Medical Biosciences @ Imperial, Founding Engineer @ Arete. AI automations, full-stack, ML for neuroscience.",
   icons: {
     icon: "/favicon.ico",
     apple: "/icon.png",

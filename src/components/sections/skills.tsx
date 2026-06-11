@@ -19,13 +19,19 @@ const mainStack = [
   "Pinecone",
   "RAG",
   "Multi-agent",
+  "PyTorch",
+  "scikit-learn",
+  "Flask",
+  "Docker",
+  "MongoDB",
+  "LlamaIndex",
 ];
 
 export function Skills() {
   return (
     <section id="skills" className="relative overflow-hidden py-24 md:py-32">
       <div className="mx-auto mb-12 max-w-4xl px-6">
-        <p className="mb-6 font-mono text-xs uppercase tracking-widest text-rose-500 dark:text-rose-400">
+        <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.35em] text-rose-500 dark:text-rose-400">
           04 · stack
         </p>
         <h2 className="font-display mb-8 text-4xl font-normal text-slate-900 dark:text-white md:text-6xl">
@@ -68,7 +74,7 @@ function Marquee({ items, reverse = false }: { items: string[]; reverse?: boolea
 function SkillGroup({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400">
+      <h3 className="mb-4 font-mono text-[11px] uppercase tracking-[0.35em] text-slate-500 dark:text-slate-400">
         {title}
       </h3>
       <ul className="space-y-2 text-sm text-slate-800 dark:text-slate-200">
