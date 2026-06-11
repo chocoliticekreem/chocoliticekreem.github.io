@@ -24,8 +24,6 @@ This project is now configured for Vercel-first deployment.
 
 Link the repo to a Vercel project and deploy from `main`, or use the Vercel CLI for preview deployments.
 
-The legacy GitHub Pages workflow still exists in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), but it is no longer the primary deployment target.
-
 ## Clone and make it your own
 
 1. Fork or clone this repo.
