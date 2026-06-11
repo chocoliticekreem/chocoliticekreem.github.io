@@ -42,8 +42,11 @@ export function Contact() {
       <h2 className="font-display mb-8 text-4xl font-normal text-slate-900 dark:text-white md:text-6xl">
         Connect with me!
       </h2>
-      <p className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-        Always down to chat about cool ideas, collaborations etc.
+      <p className="mb-4 max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+        Co-op mode unlocked — always down to chat about cool ideas, collaborations etc.
+      </p>
+      <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">
+        select a channel ↓
       </p>
       <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
         {links.map(({ label, href, Icon, text }) => (

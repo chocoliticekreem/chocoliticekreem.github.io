@@ -120,6 +120,15 @@ body {
   50%, 100% { opacity: 0.35; }
 }
 
+@keyframes drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(48px); }
+}
+
+.animate-drift {
+  animation: drift 70s ease-in-out infinite;
+}
+
 .animate-blink {
   animation: hud-blink 1.3s steps(1, end) infinite;
 }

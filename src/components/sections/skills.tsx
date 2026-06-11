@@ -34,9 +34,12 @@ export function Skills() {
         <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.35em] text-rose-500 dark:text-rose-400">
           04 · stack
         </p>
-        <h2 className="font-display mb-8 text-4xl font-normal text-slate-900 dark:text-white md:text-6xl">
+        <h2 className="font-display mb-4 text-4xl font-normal text-slate-900 dark:text-white md:text-6xl">
           What I work with.
         </h2>
+        <p className="mb-8 max-w-md text-sm italic leading-relaxed text-slate-600 dark:text-slate-300">
+          World 04 — the inventory screen.
+        </p>
       </div>
 
       <Marquee items={mainStack} />

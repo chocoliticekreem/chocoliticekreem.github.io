@@ -18,6 +18,7 @@ const groundEntry = experience.find((e) => e.kind === "education");
 
 function tierOf(e: ExperienceEntry): Tier {
   if (e.headline) return 1;
+  if (e.featured) return 2;
   if (e.kind === "society") return 3;
   return 2;
 }
@@ -458,7 +459,7 @@ function GroundLevel({ onLand, landed }: { onLand: () => void; landed: boolean }
             className="mx-auto max-w-[28rem] rounded-lg border border-[#1a0a2e]/25 bg-[#fff5ec]/95 p-5 text-[#1a0a2e] dark:border-amber-200/30 dark:bg-[#1a0a2e]/80 dark:text-[#f8ecff]"
           >
             <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-amber-600 dark:text-amber-300">
-              ★ home base · the launchpad
+              ★ spawn point · where the run began
             </p>
             <div className="mt-2 flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="font-semibold">{groundEntry.role}</h3>
@@ -467,6 +468,9 @@ function GroundLevel({ onLand, landed }: { onLand: () => void; landed: boolean }
             <p className="font-display text-xl text-rose-600 dark:text-rose-300">
               {groundEntry.company}
             </p>
+            {groundEntry.tagline && (
+              <p className="mt-1.5 text-[13px] leading-snug opacity-75">{groundEntry.tagline}</p>
+            )}
           </motion.div>
 
           {/* landing dust puff */}

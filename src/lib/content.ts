@@ -17,6 +17,7 @@ export type Experience = {
   current: boolean;
   kind: "work" | "programme" | "society" | "education";
   headline?: boolean;
+  featured?: boolean;
   tagline?: string;
   badge?: string;
 };
@@ -58,6 +59,8 @@ export const experience: Experience[] = [
     location: "London, UK",
     current: true,
     kind: "society",
+    featured: true,
+    tagline: "Core team of Imperial's startup society",
   },
   {
     company: "Imperial AI Society",
@@ -66,6 +69,8 @@ export const experience: Experience[] = [
     location: "London, UK",
     current: true,
     kind: "society",
+    featured: true,
+    tagline: "Running tech for Imperial's AI community",
   },
   {
     company: "CodeWords",
@@ -112,9 +117,9 @@ export const experience: Experience[] = [
   {
     company: "Imperial College Chinese Society",
     role: "President",
-    period: "May 2025 — Present",
+    period: "May 2025 — Jun 2026",
     location: "London, UK",
-    current: true,
+    current: false,
     kind: "society",
   },
   {
@@ -124,6 +129,7 @@ export const experience: Experience[] = [
     location: "London, UK",
     current: true,
     kind: "education",
+    tagline: "Side quest: the degree. Main quest: building.",
   },
 ];
 
