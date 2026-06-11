@@ -291,12 +291,12 @@ function Header() {
 
 /* ---------- checkpoints ---------- */
 
-function PixelFlag({ big, live }: { big?: boolean; live?: boolean }) {
+function PixelFlag({ live }: { live?: boolean }) {
   return (
-    <span aria-hidden className={`relative inline-block ${big ? "h-12 w-9" : "h-9 w-7"} shrink-0`}>
-      <span className={`absolute left-0 top-0 ${big ? "h-12" : "h-9"} w-[3px] bg-[#1a0a2e]/50 dark:bg-white/40`} />
+    <span aria-hidden className="relative inline-block h-12 w-9 shrink-0">
+      <span className="absolute left-0 top-0 h-12 w-[3px] bg-[#1a0a2e]/50 dark:bg-white/40" />
       <span
-        className={`absolute left-[3px] top-0 ${big ? "h-5 w-8" : "h-4 w-6"} ${
+        className={`absolute left-[3px] top-0 h-5 w-8 ${
           live ? "animate-flag bg-rose-500 dark:bg-rose-400" : "bg-rose-500/35 dark:bg-rose-400/30"
         } [clip-path:polygon(0_0,100%_0,82%_50%,100%_100%,0_100%)]`}
       />
@@ -340,7 +340,7 @@ function Checkpoint({
     <li
       ref={ref}
       className={`relative flex ${
-        tier === 1 ? "min-h-[38vh]" : tier === 2 ? "min-h-[24vh]" : "min-h-[12vh]"
+        tier === 1 ? "min-h-[30vh]" : tier === 2 ? "min-h-[22vh]" : "min-h-[18vh]"
       } items-center ${right ? "md:justify-end" : "md:justify-start"}`}
     >
       <motion.div
@@ -350,7 +350,7 @@ function Checkpoint({
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         className="w-full md:w-auto"
       >
-        {tier === 3 ? <Signpost entry={entry} /> : <Card entry={entry} tier={tier} />}
+        <Card entry={entry} tier={tier} />
       </motion.div>
     </li>
   );
@@ -359,10 +359,10 @@ function Checkpoint({
 function Card({ entry, tier }: { entry: ExperienceEntry; tier: Tier }) {
   return (
     <div
-      className={`group relative w-full border bg-[#fff5ec]/95 text-[#1a0a2e] transition-all duration-200 hover:-translate-y-0.5 hover:border-rose-400 dark:bg-[#1a0a2e]/80 dark:text-[#f8ecff] dark:backdrop-blur-[2px] dark:hover:border-rose-400/70 ${
+      className={`group relative w-full max-w-[26rem] rounded-lg border bg-[#fff5ec]/95 p-5 text-[#1a0a2e] transition-all duration-200 hover:-translate-y-0.5 hover:border-rose-400 dark:bg-[#1a0a2e]/80 dark:text-[#f8ecff] dark:backdrop-blur-[2px] dark:hover:border-rose-400/70 ${
         tier === 1
-          ? "max-w-[28rem] rounded-lg border-[#1a0a2e]/25 p-6 dark:border-white/25 dark:shadow-[0_0_28px_rgba(255,79,163,0.16)]"
-          : "max-w-[24rem] rounded-md border-[#1a0a2e]/20 p-4 dark:border-white/15"
+          ? "border-[#1a0a2e]/25 dark:border-white/25 dark:shadow-[0_0_28px_rgba(255,79,163,0.16)]"
+          : "border-[#1a0a2e]/20 dark:border-white/15"
       }`}
     >
       {tier === 1 && (
@@ -377,21 +377,13 @@ function Card({ entry, tier }: { entry: ExperienceEntry; tier: Tier }) {
         </span>
       )}
       <div className="flex items-start gap-3">
-        <PixelFlag big={tier === 1} live={entry.current} />
+        <PixelFlag live={entry.current} />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <h3 className={`font-semibold ${tier === 1 ? "text-lg" : "text-base"}`}>
-              {entry.role}
-            </h3>
+            <h3 className="text-lg font-semibold">{entry.role}</h3>
             <QuestChip current={entry.current} tier={tier} />
           </div>
-          <p
-            className={`mt-0.5 flex flex-wrap items-baseline gap-2 ${
-              tier === 1
-                ? "font-display text-3xl leading-tight text-rose-600 dark:text-rose-300"
-                : "text-sm text-rose-600 dark:text-rose-300"
-            }`}
-          >
+          <p className="mt-0.5 flex flex-wrap items-baseline gap-2 font-display text-2xl leading-tight text-rose-600 dark:text-rose-300">
             {entry.company}
             {entry.badge && (
               <span className="rounded-sm border border-amber-600/40 bg-amber-400/10 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.15em] text-amber-600 dark:border-amber-400/40 dark:text-amber-400">
@@ -406,22 +398,6 @@ function Card({ entry, tier }: { entry: ExperienceEntry; tier: Tier }) {
             {entry.period} · {entry.location}
           </p>
         </div>
-      </div>
-    </div>
-  );
-}
-
-function Signpost({ entry }: { entry: ExperienceEntry }) {
-  return (
-    <div className="group flex w-full max-w-[24rem] items-baseline gap-3 rounded-r-md border-l-[3px] border-[#1a0a2e]/30 bg-[#fff5ec]/75 py-1.5 pl-4 pr-4 backdrop-blur-[2px] transition-colors duration-200 hover:border-rose-400 dark:border-white/30 dark:bg-transparent dark:backdrop-blur-none dark:hover:border-rose-400">
-      <div className="min-w-0 flex-1">
-        <p className="font-mono text-xs text-[#1a0a2e] transition-colors group-hover:text-rose-600 dark:text-[#f8ecff] dark:group-hover:text-rose-300">
-          {entry.role} · {entry.company}
-        </p>
-        <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.15em] text-[#1a0a2e]/50 dark:text-white/45">
-          {entry.period}
-          {entry.current && <span className="ml-2 text-rose-600 dark:text-rose-300">● now</span>}
-        </p>
       </div>
     </div>
   );
@@ -456,7 +432,7 @@ function GroundLevel({ onLand, landed }: { onLand: () => void; landed: boolean }
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto max-w-[28rem] rounded-lg border border-[#1a0a2e]/25 bg-[#fff5ec]/95 p-5 text-[#1a0a2e] dark:border-amber-200/30 dark:bg-[#1a0a2e]/80 dark:text-[#f8ecff]"
+            className="mx-auto max-w-[26rem] rounded-lg border border-[#1a0a2e]/25 bg-[#fff5ec]/95 p-5 text-[#1a0a2e] dark:border-amber-200/30 dark:bg-[#1a0a2e]/80 dark:text-[#f8ecff]"
           >
             <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-amber-600 dark:text-amber-300">
               ★ spawn point · where the run began
@@ -575,14 +551,11 @@ function StaticExperience() {
           Where I&apos;ve landed.
         </h2>
         <ol className="mt-12 space-y-4 pb-12">
-          {checkpoints.map((entry) => {
-            const tier = tierOf(entry);
-            return (
-              <li key={entry.company + entry.role}>
-                {tier === 3 ? <Signpost entry={entry} /> : <Card entry={entry} tier={tier} />}
-              </li>
-            );
-          })}
+          {checkpoints.map((entry) => (
+            <li key={entry.company + entry.role}>
+              <Card entry={entry} tier={tierOf(entry)} />
+            </li>
+          ))}
           {groundEntry && (
             <li>
               <Card entry={groundEntry} tier={2} />
