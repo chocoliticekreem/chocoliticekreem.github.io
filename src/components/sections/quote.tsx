@@ -210,10 +210,6 @@ export function Quote() {
             <br />
             you land on a cloud.
           </h2>
-          <div className="mt-10 h-px w-24 bg-white/50" />
-          <p className="mt-6 max-w-md text-sm italic text-white/90 [text-shadow:0_4px_22px_rgba(0,0,0,0.5)] md:text-base">
-            The closest thing to a personal mission statement. It&apos;s why I keep shipping.
-          </p>
         </motion.div>
 
         {!isPaused && (
