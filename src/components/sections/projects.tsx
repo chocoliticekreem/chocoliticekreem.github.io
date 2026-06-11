@@ -24,8 +24,14 @@ export function Projects() {
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
                   {p.name}
                 </h3>
-                {p.context && (
+                {(p.award || p.context) && (
                   <p className="mt-1 font-mono text-xs text-rose-600 dark:text-rose-300">
+                    {p.award && (
+                      <span className="font-semibold text-amber-600 dark:text-amber-400">
+                        {p.award}
+                      </span>
+                    )}
+                    {p.award && p.context && " · "}
                     {p.context}
                   </p>
                 )}

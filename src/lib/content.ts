@@ -103,13 +103,15 @@ export type Project = {
   tech: string[];
   url: string;
   context?: string;
+  award?: string;
 };
 
 export const projects: Project[] = [
   {
     name: "Joi",
+    award: "2nd place AI & Robotics",
     context:
-      "2nd place AI & Robotics · EuroTech Federation Hong Kong Hackathon, co-hosted by HKTE, HKSTP, HK–Shenzhen tech parks & Cyberport",
+      "EuroTech Federation Hong Kong Hackathon, co-hosted by HKTE, HKSTP, HSITP & Cyberport",
     description:
       "AI bedside robotic companion for Hong Kong's ageing population. Talks through a Gemini voice pipeline, emotes, and performs real care tasks — water and pill delivery — on a low-cost SO-101 arm with two trained ACT policies (50+ teleop episodes each). Caregiver dashboard + FastAPI bridge run fully local, so no patient data leaves the device. Targets care homes under HK's HK$2B gerontech fund at under HKD 4,000 per unit.",
     tech: ["Python", "FastAPI", "Gemini", "ACT / LeRobot", "SO-101", "Next.js"],
@@ -125,7 +127,8 @@ export const projects: Project[] = [
   },
   {
     name: "Stream Mind",
-    context: "1st place Gradium · 2nd place Google DeepMind · 3rd overall at {Tech:Europe} London AI Hackathon",
+    award: "1st place Gradium · 2nd place Google DeepMind · 3rd overall",
+    context: "{Tech:Europe} London AI Hackathon",
     description:
       "Live-streaming AI copilot for creators. Built voice-controlled clipping, instant clip retrieval, YouTube upload flows, voice-interactive chat polls, live chat sentiment analysis, and chatbot tooling for stream communities, with more features on the way.",
     tech: ["Next.js", "Voice AI", "Live Streaming", "YouTube API", "Sentiment Analysis"],
