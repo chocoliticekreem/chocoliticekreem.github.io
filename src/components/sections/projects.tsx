@@ -4,10 +4,10 @@ import { projects } from "@/lib/content";
 export function Projects() {
   return (
     <section id="projects" className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-      <p className="mb-6 font-mono text-xs uppercase tracking-widest text-rose-500 dark:text-rose-400">
+      <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.35em] text-rose-500 dark:text-rose-400">
         03 · projects
       </p>
-      <h2 className="font-display mb-12 text-4xl font-semibold text-slate-900 dark:text-white md:text-6xl">
+      <h2 className="font-display mb-12 text-4xl font-normal text-slate-900 dark:text-white md:text-6xl">
         Things I&apos;ve built.
       </h2>
       <div className="grid gap-5 md:grid-cols-2">

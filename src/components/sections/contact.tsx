@@ -36,10 +36,10 @@ export function Contact() {
 
   return (
     <section id="contact" className="mx-auto max-w-4xl px-6 py-24 md:py-32">
-      <p className="mb-6 font-mono text-xs uppercase tracking-widest text-rose-500 dark:text-rose-400">
+      <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.35em] text-rose-500 dark:text-rose-400">
         05 · contact
       </p>
-      <h2 className="font-display mb-8 text-4xl font-semibold text-slate-900 dark:text-white md:text-6xl">
+      <h2 className="font-display mb-8 text-4xl font-normal text-slate-900 dark:text-white md:text-6xl">
         Connect with me!
       </h2>
       <p className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">

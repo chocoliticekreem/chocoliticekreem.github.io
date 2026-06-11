@@ -1,12 +1,12 @@
 export const profile = {
   name: "Anson Woo",
-  headline: "Medical Biosciences @ Imperial · Founding Engineer @ EdU",
+  headline: "Medical Biosciences @ Imperial · Founding Engineer @ Arete",
   location: "London, UK · Hong Kong",
   email: "anson9m23@gmail.com",
   github: "https://github.com/chocoliticekreem",
   linkedin: "https://www.linkedin.com/in/ansonwoo",
   x: "https://x.com/fluffyfluffycow",
-  bio: "Year 2 Medical Biosciences student at Imperial, self-teaching AI/ML. Founding Engineer at EdU, building AI automations at Speed NetworkNow and CodeWords. Year 3 placement lined up at NeuroX working on ML for neuroscience.",
+  bio: "Medical Biosciences student at Imperial (BSc '27), self-teaching AI/ML. Founding Engineer at Arete, Builder in Residence at CodeWords — previously built AI automations at Speed NetworkNow. Placement lined up at NeuroX working on ML for neuroscience.",
 };
 
 export type Experience = {
@@ -19,7 +19,7 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    company: "EdU CareerTech",
+    company: "Arete",
     role: "Founding Engineer",
     period: "Mar 2026 — Present",
     location: "London, UK",
@@ -82,6 +82,13 @@ export const experience: Experience[] = [
     current: false,
   },
   {
+    company: "IEEE TryEngineering AI Camp",
+    role: "Co-organiser & Emcee",
+    period: "Jul 2025",
+    location: "Hong Kong",
+    current: false,
+  },
+  {
     company: "Imperial College Chinese Society",
     role: "President",
     period: "May 2025 — Present",
@@ -127,7 +134,7 @@ export const projects: Project[] = [
   },
   {
     name: "Stream Mind",
-    award: "1st place Gradium · 2nd place Google DeepMind · 3rd overall",
+    award: "1st place Gradium · 2nd place Google DeepMind · 3rd overall · $5.5k+ in prizes",
     context: "{Tech:Europe} London AI Hackathon",
     description:
       "Live-streaming AI copilot for creators. Built voice-controlled clipping, instant clip retrieval, YouTube upload flows, voice-interactive chat polls, live chat sentiment analysis, and chatbot tooling for stream communities, with more features on the way.",
@@ -154,8 +161,8 @@ export const projects: Project[] = [
     name: "WhyCombinator",
     context: "UCL Build AI Festival",
     description:
-      "Pitch evaluator that scores content + presentation (gestures, emotion). Multi-agent personas debate across rounds, produce a verdict, then auto-generate a Prolific survey to pitch real humans and validate the AI's take.",
-    tech: ["Python", "Multi-agent", "Prolific API"],
+      "Pitch evaluator that scores content + presentation (gestures, emotion) through a 10-stage multi-model evaluation pipeline. Multi-agent personas debate across rounds, produce a verdict, then auto-generate a Prolific survey to pitch real humans and validate the AI's take.",
+    tech: ["FastAPI", "Google ADK", "Whisper", "Hume AI", "Prolific API"],
     url: "https://github.com/chocoliticekreem/WhyCombinator",
   },
   {
@@ -169,8 +176,8 @@ export const projects: Project[] = [
     name: "Central Imaging Control",
     context: "Imperial HealthHack",
     description:
-      "Hospital imaging traffic solution — a central control layer that routes and triages scan requests across departments to cut queue times.",
-    tech: ["Python", "Healthcare"],
+      "Real-time patient-flow monitoring for hospital wards. YOLOv8 detection with ResNet18 re-identification tracks patients across cameras; a Flask REST API streams MJPEG feeds into a ward dashboard with NEWS2-style risk scoring.",
+    tech: ["Python", "YOLOv8", "ResNet18", "Flask", "OpenCV"],
     url: "https://github.com/chocoliticekreem/Central-Imaging-Control---Hospital-Traffic-Solution---Imperial-HealthHack",
   },
 ];
