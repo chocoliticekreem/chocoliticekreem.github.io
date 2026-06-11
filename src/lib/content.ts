@@ -15,6 +15,10 @@ export type Experience = {
   period: string;
   location: string;
   current: boolean;
+  kind: "work" | "programme" | "society" | "education";
+  headline?: boolean;
+  tagline?: string;
+  badge?: string;
 };
 
 export const experience: Experience[] = [
@@ -24,13 +28,20 @@ export const experience: Experience[] = [
     period: "Mar 2026 — Present",
     location: "London, UK",
     current: true,
+    kind: "work",
+    headline: true,
+    tagline: "Sole engineer, prototype → production · 90+ releases",
   },
   {
-    company: "Encord (YC W21)",
+    company: "Encord",
     role: "Ambassador",
     period: "Jun 2026 — Present",
     location: "London, UK",
     current: true,
+    kind: "work",
+    headline: true,
+    badge: "YC W21",
+    tagline: "Repping the YC W21 data engine for frontier AI",
   },
   {
     company: "Encode Club",
@@ -38,6 +49,7 @@ export const experience: Experience[] = [
     period: "Apr 2026 — Present",
     location: "London, UK",
     current: true,
+    kind: "programme",
   },
   {
     company: "Imperial Entrepreneurs",
@@ -45,6 +57,7 @@ export const experience: Experience[] = [
     period: "Apr 2026 — Present",
     location: "London, UK",
     current: true,
+    kind: "society",
   },
   {
     company: "Imperial AI Society",
@@ -52,6 +65,7 @@ export const experience: Experience[] = [
     period: "Apr 2026 — Present",
     location: "London, UK",
     current: true,
+    kind: "society",
   },
   {
     company: "CodeWords",
@@ -59,6 +73,8 @@ export const experience: Experience[] = [
     period: "Mar 2026 — Present",
     location: "London, UK",
     current: true,
+    kind: "work",
+    tagline: "Shipping AI automations in residence",
   },
   {
     company: "GDG Academy",
@@ -66,6 +82,7 @@ export const experience: Experience[] = [
     period: "Mar 2026 — Present",
     location: "London, UK",
     current: true,
+    kind: "programme",
   },
   {
     company: "Speed NetworkNow",
@@ -73,6 +90,7 @@ export const experience: Experience[] = [
     period: "Jan 2026 — May 2026",
     location: "London, UK",
     current: false,
+    kind: "work",
   },
   {
     company: "L'Oréal",
@@ -80,6 +98,7 @@ export const experience: Experience[] = [
     period: "Apr 2026",
     location: "London, UK",
     current: false,
+    kind: "work",
   },
   {
     company: "IEEE TryEngineering AI Camp",
@@ -87,6 +106,8 @@ export const experience: Experience[] = [
     period: "Jul 2025",
     location: "Hong Kong",
     current: false,
+    kind: "work",
+    tagline: "Emceed + tutored 100+ students",
   },
   {
     company: "Imperial College Chinese Society",
@@ -94,6 +115,7 @@ export const experience: Experience[] = [
     period: "May 2025 — Present",
     location: "London, UK",
     current: true,
+    kind: "society",
   },
   {
     company: "Imperial College London",
@@ -101,6 +123,7 @@ export const experience: Experience[] = [
     period: "Sep 2024 — 2027",
     location: "London, UK",
     current: true,
+    kind: "education",
   },
 ];
 
