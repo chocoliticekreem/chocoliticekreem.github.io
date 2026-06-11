@@ -26,6 +26,13 @@ export const experience: Experience[] = [
     current: true,
   },
   {
+    company: "Encord (YC W21)",
+    role: "Ambassador",
+    period: "Jun 2026 — Present",
+    location: "London, UK",
+    current: true,
+  },
+  {
     company: "Encode Club",
     role: "Scholar",
     period: "Apr 2026 — Present",
@@ -99,6 +106,15 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    name: "Joi",
+    context:
+      "2nd place AI & Robotics · EuroTech Federation Hong Kong Hackathon, co-hosted by HKTE, HKSTP, HK–Shenzhen tech parks & Cyberport",
+    description:
+      "AI bedside robotic companion for Hong Kong's ageing population. Talks through a Gemini voice pipeline, emotes, and performs real care tasks — water and pill delivery — on a low-cost SO-101 arm with two trained ACT policies (50+ teleop episodes each). Caregiver dashboard + FastAPI bridge run fully local, so no patient data leaves the device. Targets care homes under HK's HK$2B gerontech fund at under HKD 4,000 per unit.",
+    tech: ["Python", "FastAPI", "Gemini", "ACT / LeRobot", "SO-101", "Next.js"],
+    url: "https://github.com/chocoliticekreem/hkhack",
+  },
   {
     name: "Tenkai",
     context: "Unicorn Mafia · Americas Hackathon 2026",
